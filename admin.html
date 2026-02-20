@@ -921,7 +921,8 @@ tr:hover td { background: rgba(206,224,143,0.06); }
 
                 <div class="form-group">
                   <label>Codice Riferimento</label>
-                  <input type="text" id="f_codice" placeholder="es. RIG001">
+                  <input type="text" id="f_codice" placeholder="es. LA0307 · CAP1680 (copia da Idealista)" style="font-weight:600;letter-spacing:1px">
+                  <small style="color:var(--caffe2);font-size:0.7rem">Copia esattamente il codice Rif. che trovi su Idealista nella scheda immobile</small>
                 </div>
                 <div class="form-group">
                   <label>Titolo *</label>
@@ -946,7 +947,7 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                 </div>
                 <div class="form-group">
                   <label>Tipologia</label>
-                  <select id="f_tipologia">
+                  <select id="f_tipologia" onchange="suggerisciCodice()">
                     <option value="appartamento">Appartamento</option>
                     <option value="villa">Villa</option>
                     <option value="villetta">Villetta</option>
@@ -1118,6 +1119,11 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                   <label class="check-item"><input type="checkbox" id="f_annuncio_prestigio"> ⭐ Annuncio Prestigio</label>
                   <label class="check-item"><input type="checkbox" id="f_chiavi_agenzia"> 🔑 Chiavi in Agenzia</label>
                   <label class="check-item"><input type="checkbox" id="f_immobile_garantito"> ✅ Immobile Garantito</label>
+                  <label class="check-item"><input type="checkbox" id="f_annuncio_autonomo"> 📢 Annuncio Autonomo</label>
+                  <label class="check-item"><input type="checkbox" id="f_portineria"> 👮 Portineria</label>
+                  <label class="check-item"><input type="checkbox" id="f_posto_spiaggia"> 🏖️ Posto Spiaggia</label>
+                  <label class="check-item"><input type="checkbox" id="f_accesso_disabili"> ♿ Accesso Disabili</label>
+                  <label class="check-item"><input type="checkbox" id="f_area_fitness"> 🏋️ Area Fitness</label>
                 </div>
                 <div class="form-grid" style="margin-top:12px">
                   <div class="form-group">
@@ -1127,6 +1133,14 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                   <div class="form-group">
                     <label>N° Portoni</label>
                     <input type="number" id="f_num_portoni" min="0" placeholder="es. 1">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Chiavi</label>
+                    <input type="number" id="f_numero_chiavi" min="0" placeholder="es. 2">
+                  </div>
+                  <div class="form-group">
+                    <label>Unità Abitative</label>
+                    <input type="number" id="f_unita_abitative" min="1" placeholder="es. 1">
                   </div>
                   <div class="form-group">
                     <label>Impianto Elettrico</label>
@@ -1144,7 +1158,7 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                       <option value="vista aperta">Vista Aperta</option>
                       <option value="vista mare">Vista Mare</option>
                       <option value="vista monti">Vista Monti</option>
-                      <option value="vista città">Vista Città</option>
+                      <option value="vista citta">Vista Città</option>
                     </select>
                   </div>
                   <div class="form-group">
@@ -1160,14 +1174,109 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                     <label>Spese Condominio (€/mese)</label>
                     <input type="number" id="f_spese_condominio" min="0" placeholder="es. 80">
                   </div>
+                  <div class="form-group">
+                    <label>Connettività</label>
+                    <select id="f_connettivita">
+                      <option value="">Non specificata</option>
+                      <option value="nessuna">Nessuna</option>
+                      <option value="adsl">ADSL</option>
+                      <option value="fibra">Fibra Ottica</option>
+                      <option value="fibra_1gb">Fibra 1GB</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Distanza Mare/Lago (mt)</label>
+                    <input type="number" id="f_distanza_mare" min="0" placeholder="es. 500">
+                  </div>
+                  <div class="form-group">
+                    <label>Totale Piani Edificio</label>
+                    <input type="number" id="f_totale_piani" min="1" placeholder="es. 3">
+                  </div>
+                  <div class="form-group">
+                    <label>Piano Numero</label>
+                    <select id="f_piano_numero">
+                      <option value="">----</option>
+                      <option value="-1">Interrato</option>
+                      <option value="0">Piano Terra</option>
+                      <option value="1">1°</option><option value="2">2°</option>
+                      <option value="3">3°</option><option value="4">4°</option>
+                      <option value="5">5°+</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Tipo Contratto</label>
+                    <select id="f_tipo_contratto">
+                      <option value="">Non specificato</option>
+                      <option value="intera proprieta">Intera Proprietà</option>
+                      <option value="nuda proprieta">Nuda Proprietà</option>
+                      <option value="usufrutto">Usufrutto</option>
+                      <option value="affitto a riscatto">Affitto a Riscatto</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Stato al Rogito</label>
+                    <select id="f_stato_rogito">
+                      <option value="">Non specificato</option>
+                      <option value="libero">Libero</option>
+                      <option value="occupato">Occupato</option>
+                      <option value="da definire">Da Definire</option>
+                    </select>
+                  </div>
                 </div>
 
-                <!-- ═══ RISCALDAMENTO ═══ -->
-                <div class="section-divider">🔥 Riscaldamento</div>
+                <!-- ═══ RISCALDAMENTO & ENERGIA ═══ -->
+                <div class="section-divider">🔥 Riscaldamento & Energia</div>
                 <div class="checks-grid">
                   <label class="check-item"><input type="checkbox" id="f_riscaldamento_autonomo"> Autonomo</label>
                   <label class="check-item"><input type="checkbox" id="f_riscaldamento_centralizzato"> Centralizzato</label>
+                  <label class="check-item"><input type="checkbox" id="f_riscaldamento_semi_autonomo"> Semi-Autonomo</label>
                   <label class="check-item"><input type="checkbox" id="f_aria_condizionata"> ❄️ Aria Condizionata</label>
+                  <label class="check-item"><input type="checkbox" id="f_caldaia_condensazione"> Caldaia Condensazione</label>
+                  <label class="check-item"><input type="checkbox" id="f_camino"> 🔥 Camino</label>
+                  <label class="check-item"><input type="checkbox" id="f_riscaldamento_pavimento"> Riscald. a Pavimento</label>
+                  <label class="check-item"><input type="checkbox" id="f_raffreddamento_pavimento"> Raffredd. a Pavimento</label>
+                  <label class="check-item"><input type="checkbox" id="f_termopompa"> Termopompa</label>
+                  <label class="check-item"><input type="checkbox" id="f_predisposizione_aria"> Predisposizione Aria Cond.</label>
+                  <label class="check-item"><input type="checkbox" id="f_contacolori"> Contacolori</label>
+                  <label class="check-item"><input type="checkbox" id="f_pannelli_fotovoltaici"> ☀️ Pannelli Fotovoltaici</label>
+                  <label class="check-item"><input type="checkbox" id="f_pannelli_solari"> 🌞 Pannelli Solari</label>
+                  <label class="check-item"><input type="checkbox" id="f_impianto_geotermico"> Geotermico</label>
+                </div>
+
+                <!-- ═══ SICUREZZA & TECNOLOGIA ═══ -->
+                <div class="section-divider">🔐 Sicurezza & Tecnologia</div>
+                <div class="checks-grid">
+                  <label class="check-item"><input type="checkbox" id="f_allarme"> 🚨 Allarme</label>
+                  <label class="check-item"><input type="checkbox" id="f_predisposizione_allarme"> Predisposizione Allarme</label>
+                  <label class="check-item"><input type="checkbox" id="f_domotica"> 🏠 Domotica</label>
+                  <label class="check-item"><input type="checkbox" id="f_porta_blindata"> 🔐 Porta Blindata</label>
+                  <label class="check-item"><input type="checkbox" id="f_tapparelle_motorizzate"> Tapparelle Motorizzate</label>
+                  <label class="check-item"><input type="checkbox" id="f_tende_sole"> Tende da Sole</label>
+                  <label class="check-item"><input type="checkbox" id="f_zanzariere"> Zanzariere</label>
+                  <label class="check-item"><input type="checkbox" id="f_cassaforte"> 🔒 Cassaforte</label>
+                </div>
+
+                <!-- ═══ STATO IMMOBILE ═══ -->
+                <div class="section-divider">🏗️ Stato Immobile</div>
+                <div class="checks-grid">
+                  <label class="check-item"><input type="checkbox" id="f_nuovo_costruzione"> 🆕 Nuovo/In Costruzione</label>
+                  <label class="check-item"><input type="checkbox" id="f_grezzo"> Grezzo</label>
+                  <label class="check-item"><input type="checkbox" id="f_cartello"> 🪧 Cartello Esposto</label>
+                  <label class="check-item"><input type="checkbox" id="f_riservato_residenti"> Riservato Residenti</label>
+                </div>
+                <div class="form-grid" style="margin-top:12px">
+                  <div class="form-group">
+                    <label>Stato Manutenzione</label>
+                    <select id="f_stato_manutenzione">
+                      <option value="">Non specificato</option>
+                      <option value="ottimo">Ottimo</option>
+                      <option value="buono">Buono</option>
+                      <option value="discreto">Discreto</option>
+                      <option value="da ristrutturare">Da Ristrutturare</option>
+                      <option value="ristrutturato">Ristrutturato</option>
+                      <option value="nuovo">Nuovo</option>
+                    </select>
+                  </div>
                 </div>
 
                 <!-- ═══ CATASTO ═══ -->
@@ -1254,10 +1363,13 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                     <input type="text" id="f_youtube_id" placeholder="es. H93UW4SX8zQ">
                     <small style="color:var(--caffe2);font-size:0.72rem">Dall'URL youtube.com/watch?v=<strong>QUESTO</strong></small>
                   </div>
-                  <div class="form-group">
-                    <label>Virtual Tour Esterno (iframe URL)</label>
-                    <input type="url" id="f_virtual_tour" placeholder="es. https://kuula.co/share/...">
-                    <small style="color:var(--caffe2);font-size:0.72rem">URL embed da Kuula, Matterport, ecc.</small>
+                  <div class="form-group form-full">
+                    <label>🌐 Virtual Tour URL (Idealista, Kuula, Matterport...)</label>
+                    <input type="url" id="f_virtual_tour" placeholder="es. https://www.idealista.it/immobile/33318540/virtual-tour/1/">
+                    <small style="color:var(--caffe2);font-size:0.72rem">
+                      Incolla l'URL del virtual tour da Idealista → verrà mostrato nella scheda immobile in iframe a tutto schermo.<br>
+                      Es: <strong>https://www.idealista.it/immobile/XXXXXXX/virtual-tour/1/</strong>
+                    </small>
                   </div>
                 </div>
 
@@ -2138,6 +2250,52 @@ function removeVtScene(i) {
   renderVtScenes();
 }
 
+
+
+// ══════════════════════════════════════
+// CODICE RIFERIMENTO AUTO
+// ══════════════════════════════════════
+const PREFISSI = {
+  appartamento: 'APP',
+  villa: 'VIL',
+  villetta: 'VLT',
+  attico: 'ATT',
+  bilocale: 'BIL',
+  trilocale: 'TRI',
+  monolocale: 'MON',
+  ufficio: 'UFF',
+  negozio: 'NEG',
+  capannone: 'CAP',
+  terreno: 'TER',
+  garage: 'GAR',
+  magazzino: 'MAG',
+  rustico: 'RUS',
+  cascina: 'CAS',
+  loft: 'LOF',
+  mansarda: 'MAN',
+};
+
+function getPrefisso() {
+  const tip = document.getElementById('f_tipologia')?.value || '';
+  return PREFISSI[tip] || 'RIG';
+}
+
+async function generaCodice() {
+  const pfx = getPrefisso();
+  // Conta quanti immobili hanno già quel prefisso
+  const { data } = await sb.from('immobili').select('codice').ilike('codice', pfx + '%');
+  const num = (data?.length || 0) + 1;
+  const codice = pfx + String(num).padStart(4, '0');
+  document.getElementById('f_codice').value = codice;
+  document.getElementById('f_codice').style.borderColor = 'var(--verde)';
+  setTimeout(() => document.getElementById('f_codice').style.borderColor = '', 1500);
+}
+
+function suggerisciCodice() {
+  // Solo se campo vuoto (non sovrascrive codici esistenti)
+  const current = document.getElementById('f_codice').value;
+  if (!current) generaCodice();
+}
 
 // IMPORTA DA IDEALISTA
 function openImportModal() {
