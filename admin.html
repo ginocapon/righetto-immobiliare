@@ -740,6 +740,9 @@ tr:hover td { background: rgba(206,224,143,0.06); }
         <div class="table-wrap">
           <div class="modal-header" style="border-radius:0">
             <h2 id="formTitle">Nuovo Immobile</h2>
+            <button class="btn btn-primary btn-sm" onclick="openImportModal()" style="background:var(--oro);color:var(--testo)">
+              📥 Importa da Idealista
+            </button>
           </div>
           <div class="modal-body">
             <form id="immobileForm" onsubmit="saveImmobile(event)">
@@ -1444,8 +1447,72 @@ function toast(msg, type = '') {
 // ══════════════════════════════════════
 // START
 // ══════════════════════════════════════
+
+// IMPORTA DA IDEALISTA
+function openImportModal() {
+  document.getElementById('importModal').classList.add('open');
+  document.getElementById('importJson').value = '';
+  document.getElementById('importError').style.display = 'none';
+}
+function closeImportModal() {
+  document.getElementById('importModal').classList.remove('open');
+}
+function doImport() {
+  const raw = document.getElementById('importJson').value.trim();
+  const errEl = document.getElementById('importError');
+  errEl.style.display = 'none';
+  if (!raw) { errEl.textContent = '⚠️ Incolla il JSON!'; errEl.style.display = 'block'; return; }
+  let data;
+  try { data = JSON.parse(raw); } catch(e) { errEl.textContent = '❌ JSON non valido. Riprova.'; errEl.style.display = 'block'; return; }
+  const map = {codice:'f_codice',titolo:'f_titolo',tipo_operazione:'f_tipo_operazione',categoria:'f_categoria',tipologia:'f_tipologia',comune:'f_comune',indirizzo:'f_indirizzo',prezzo:'f_prezzo',superficie:'f_superficie',locali:'f_locali',bagni:'f_bagni',piano:'f_piano',anno_costruzione:'f_anno_costruzione',stato:'f_stato',classe_energetica:'f_classe_energetica',youtube_id:'f_youtube_id',virtual_tour:'f_virtual_tour',planimetria:'f_planimetria',id_idealista:'f_id_idealista',note_interne:'f_note_interne',lat:'f_lat',lng:'f_lng'};
+  Object.entries(map).forEach(([k,id])=>{const el=document.getElementById(id);if(el&&data[k]!==undefined&&data[k]!==null)el.value=data[k];});
+  ['garage','giardino','terrazzo','cantina','ascensore','piscina','arredato','attivo','in_evidenza','venduto','affittato'].forEach(k=>{const el=document.getElementById('f_'+k);if(el&&data[k]!==undefined)el.checked=!!data[k];});
+  if(Array.isArray(data.foto)&&data.foto.length>0){currentFotos=[...data.foto];renderFotos();}
+  document.getElementById('f_attivo').checked=true;
+  closeImportModal();
+  toast('✅ '+(data.foto?.length||0)+' foto + dati importati!','success');
+  window.scrollTo(0,200);
+}
+
 renderFotos();
 checkAuth();
 </script>
+
+<!-- MODAL IMPORTA DA IDEALISTA -->
+<div class="modal-overlay" id="importModal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <h2>📥 Importa da Idealista</h2>
+      <button class="modal-close" onclick="closeImportModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.85rem;color:var(--caffe2);margin-bottom:16px">
+        1️⃣ Apri annuncio su Idealista<br>
+        2️⃣ Premi <strong>F12</strong> → tab <strong>Console</strong><br>
+        3️⃣ Incolla il bookmarklet e premi Invio<br>
+        4️⃣ Copia il JSON che appare qui sotto
+      </p>
+      <div class="form-group">
+        <label>Incolla qui il JSON copiato dal bookmarklet</label>
+        <textarea id="importJson" style="min-height:200px;font-family:monospace;font-size:0.75rem" placeholder='{
+  "titolo": "...",
+  "prezzo": 180000,
+  ...
+}'></textarea>
+      </div>
+      <div id="importError" style="color:var(--rosso);font-size:0.82rem;margin-top:8px;display:none"></div>
+      <div style="background:var(--sfondo);border-radius:8px;padding:12px;margin-top:12px">
+        <div style="font-size:0.75rem;font-weight:600;color:var(--caffe2);margin-bottom:8px">BOOKMARKLET — salva nei preferiti del browser:</div>
+        <code style="font-size:0.68rem;word-break:break-all;color:var(--nero)">javascript:(function(){const cfg=window.config||{};const mm=window.adMultimediasInfo||{};const id=String(cfg.propertyId||"");const op=cfg.operation||"";const tipo=op==="rent"?"affitto":op==="sale"?"vendita":"asta";const titolo=document.querySelector(".main-info__title-main")?.textContent?.trim()||"?";const comune=document.querySelector(".main-info__title-minor")?.textContent?.trim()||"Padova";const prezzo_txt=document.querySelector(".info-data-price .txt-bold")?.textContent?.trim()||"0";const prezzo=parseFloat(prezzo_txt.replace(/\./g,"").replace(",","."))||null;const chars=[...document.querySelectorAll(".details-property_features li")].map(li=>li.textContent.trim());const desc=document.querySelector(".comment .adCommentsLanguage p")?.textContent?.trim()||"?";const tipologie={warehouse:"capannone",apartment:"appartamento",villa:"villa",penthouse:"attico",office:"ufficio",store:"negozio",garage:"garage"};const tipologia=tipologie[cfg.typology||"?"]||cfg.typology||"?";const categoria=["warehouse","office","store"].includes(cfg.typology)?"commerciale":"residenziale";let foto=[];try{const pics=cfg.multimediaCarrousel?.multimedias?.find(m=>m.type==="PICTURE")?.content||[];foto=pics.map(p=>p.src||p.imageDataService).filter(Boolean);}catch(e){foto=(mm.picturesWithoutPlans||[]).map(p=>p.imageDataService).filter(Boolean);}const codice=document.querySelector(".txt-ref")?.textContent?.trim()||"RIG"+id.slice(-4);const feats=[...document.querySelectorAll(".info-features span")].map(s=>s.textContent.trim());const sup=parseInt(feats.find(f=>f.match(/^\d/))||"0")||null;const dl=desc.toLowerCase();const r={codice,titolo,tipo_operazione:tipo,categoria,tipologia,comune,prezzo,superficie:sup,foto,garage:dl.includes("garage")||dl.includes("parcheggio"),giardino:dl.includes("giardino"),terrazzo:dl.includes("terraz"),ascensore:dl.includes("ascensore"),piscina:dl.includes("piscina"),arredato:dl.includes("arredato"),id_idealista:id,note_interne:desc.substring(0,500),attivo:true,in_evidenza:false,venduto:false,affittato:false};const json=JSON.stringify(r,null,2);console.log("%c✅ DATI ESTRATTI:","background:#CEE08F;color:#1E3A5C;font-size:14px;font-weight:bold");console.log(json);navigator.clipboard.writeText(json).then(()=>alert("✅ "+foto.length+" foto + dati copiati!
+
+Vai Admin → Nuovo → Importa da Idealista")).catch(()=>alert("Apri Console F12 e copia il JSON"));})();</code>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeImportModal()">Annulla</button>
+      <button class="btn btn-primary" onclick="doImport()">✅ Compila il form</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
