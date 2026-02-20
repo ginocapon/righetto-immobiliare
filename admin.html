@@ -651,9 +651,12 @@ tr:hover td { background: rgba(206,224,143,0.06); }
 /* FOTO GRID */
 .foto-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
   margin-top: 10px;
+}
+@media (max-width: 900px) {
+  .foto-grid { grid-template-columns: repeat(3, 1fr); }
 }
 .foto-thumb {
   position: relative;
@@ -673,18 +676,20 @@ tr:hover td { background: rgba(206,224,143,0.06); }
 .foto-thumb .foto-del {
   position: absolute;
   top: 4px; right: 4px;
-  background: rgba(231,76,60,0.9);
+  background: rgba(231,76,60,0.95);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 22px; height: 22px;
+  width: 26px; height: 26px;
   cursor: pointer;
-  font-size: 0.7rem;
-  display: none;
+  font-size: 0.85rem;
+  display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.15s;
 }
-.foto-thumb:hover .foto-del { display: flex; }
+.foto-thumb .foto-del:hover { transform: scale(1.2); background: var(--rosso); }
 .foto-thumb .foto-badge {
   position: absolute;
   bottom: 4px; left: 4px;
@@ -713,7 +718,19 @@ tr:hover td { background: rgba(206,224,143,0.06); }
 .doc-actions { display: flex; gap: 6px; }
 .doc-actions a { color: var(--nero); font-size: 0.75rem; text-decoration: none; }
 .doc-actions a:hover { color: var(--caffe); }
-.doc-del { background: none; border: none; cursor: pointer; color: var(--rosso); font-size: 0.9rem; }
+.doc-del { 
+  background: var(--rosso); 
+  border: none; 
+  cursor: pointer; 
+  color: white; 
+  font-size: 1rem;
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.doc-del:hover { background: #c0392b; }
 
 /* VT SCENES */
 .vt-scene-card {
@@ -1685,10 +1702,39 @@ async function saveImmobile(e) {
     panorama: document.getElementById('f_panorama').value||null,
     consegna: document.getElementById('f_consegna').value||null,
     spese_condominio: parseFloat(document.getElementById('f_spese_condominio').value)||null,
+    // Arredamento
+    arredo: document.getElementById('f_arredo')?.checked||false,
+    cucina_arredata: document.getElementById('f_cucina_arredata')?.checked||false,
+    forno: document.getElementById('f_forno')?.checked||false,
+    frigorifero: document.getElementById('f_frigorifero')?.checked||false,
+    lavastoviglie: document.getElementById('f_lavastoviglie')?.checked||false,
+    lavatrice: document.getElementById('f_lavatrice')?.checked||false,
+    televisione: document.getElementById('f_televisione')?.checked||false,
+    vasca_idromassaggio: document.getElementById('f_vasca_idromassaggio')?.checked||false,
     // Riscaldamento
     riscaldamento_autonomo: document.getElementById('f_riscaldamento_autonomo').checked,
     riscaldamento_centralizzato: document.getElementById('f_riscaldamento_centralizzato').checked,
     aria_condizionata: document.getElementById('f_aria_condizionata').checked,
+    caldaia_condensazione: document.getElementById('f_caldaia_condensazione')?.checked||false,
+    camino: document.getElementById('f_camino')?.checked||false,
+    riscaldamento_pavimento: document.getElementById('f_riscaldamento_pavimento')?.checked||false,
+    termopompa: document.getElementById('f_termopompa')?.checked||false,
+    pannelli_fotovoltaici: document.getElementById('f_pannelli_fotovoltaici')?.checked||false,
+    pannelli_solari: document.getElementById('f_pannelli_solari')?.checked||false,
+    impianto_geotermico: document.getElementById('f_impianto_geotermico')?.checked||false,
+    // Altri comfort
+    allarme: document.getElementById('f_allarme')?.checked||false,
+    domotica: document.getElementById('f_domotica')?.checked||false,
+    porta_blindata: document.getElementById('f_porta_blindata')?.checked||false,
+    tapparelle_motorizzate: document.getElementById('f_tapparelle_motorizzate')?.checked||false,
+    zanzariere: document.getElementById('f_zanzariere')?.checked||false,
+    accesso_disabili: document.getElementById('f_accesso_disabili')?.checked||false,
+    area_fitness: document.getElementById('f_area_fitness')?.checked||false,
+    portineria: document.getElementById('f_portineria')?.checked||false,
+    cassaforte: document.getElementById('f_cassaforte')?.checked||false,
+    posto_spiaggia: document.getElementById('f_posto_spiaggia')?.checked||false,
+    connettivita: document.getElementById('f_connettivita')?.value||null,
+    numero_chiavi: parseInt(document.getElementById('f_numero_chiavi')?.value)||null,
     // Catasto
     rendita_catastale: parseFloat(document.getElementById('f_rendita_catastale').value)||null,
     valore_catastale: parseFloat(document.getElementById('f_valore_catastale').value)||null,
