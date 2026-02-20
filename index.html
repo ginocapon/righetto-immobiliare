@@ -43,6 +43,42 @@
     .nav-btn{border:1px solid rgba(206,224,143,.55);color:var(--oro);padding:.42rem 1.1rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border-radius:2px;transition:background .25s,color .25s}
     .nav-btn:hover{background:var(--oro);color:var(--nero)}
     @media(max-width:960px){.nav-links{display:none}}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:600}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--bianco);border-radius:2px;transition:transform .3s,opacity .3s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(max-width:960px){
+      .hamburger{display:flex}
+      .nav-tel{display:none}
+      .nav-btn{display:none}
+    }
+    .mobile-menu{
+      position:fixed;top:68px;left:0;right:0;bottom:0;
+      background:rgba(15,18,8,.97);
+      backdrop-filter:blur(20px);
+      z-index:490;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;
+      opacity:0;pointer-events:none;
+      transition:opacity .35s ease;
+    }
+    .mobile-menu.open{opacity:1;pointer-events:all}
+    .mobile-menu a{
+      font-family:'Cormorant Garamond',serif;
+      font-size:2rem;font-weight:300;color:var(--bianco);
+      letter-spacing:.06em;
+      transition:color .2s;
+    }
+    .mobile-menu a:hover{color:var(--oro)}
+    .mobile-menu .mm-tel{
+      font-size:.85rem;color:rgba(255,255,255,.35);
+      letter-spacing:.1em;margin-top:1rem;
+    }
+    .mobile-menu .mm-btn{
+      background:var(--oro);color:#0f1208;
+      padding:.7rem 2rem;font-size:.7rem;
+      letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+    }
 
     /* HERO */
     .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -130,7 +166,7 @@
     .sec-tag{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--caffe3);margin-bottom:.6rem;font-weight:500}
     .sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.2;margin-bottom:.7rem}
     .sec-h strong{font-weight:600}
-    .sec-p{font-size:.82rem;color:rgba(255,255,255,.42);line-height:2;font-weight:300;max-width:500px}
+    .sec-p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:2;font-weight:300;max-width:500px}
 
     /* IMMOBILI IN EVIDENZA */
     .evidenza{background:#7a8a55;padding:6rem 2rem}
@@ -159,19 +195,19 @@
     .pcard-specs{display:flex;gap:.6rem;flex-wrap:wrap;font-size:.68rem;color:rgba(255,255,255,.3);padding-top:.65rem;border-top:1px solid rgba(255,255,255,.06)}
 
     /* SERVIZI */
-    .servizi-sec{background:#8F9C63;padding:6rem 2rem}
+    .servizi-sec{background:#0f1208;padding:6rem 2rem}
     .srv-inner{max-width:1280px;margin:0 auto}
-    .srv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(212,184,150,.08);margin-top:3rem}
+    .srv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.18);margin-top:3rem;border:1px solid rgba(255,255,255,.18)}
     @media(max-width:650px){.srv-grid{grid-template-columns:1fr}}
-    .srv-item{background:#7a8a55;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s}
+    .srv-item{background:#0f1208;padding:2.5rem;position:relative;overflow:hidden;transition:background .3s}
     .srv-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--sabbia),transparent);transform:scaleX(0);transition:transform .38s}
-    .srv-item:hover{background:#8F9C63}
+    .srv-item:hover{background:#1a2008}
     .srv-item:hover::after{transform:scaleX(1)}
-    .srv-n{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:rgba(212,184,150,.06);line-height:1;margin-bottom:.4rem}
-    .srv-ico{font-size:1.6rem;margin-bottom:.75rem}
-    .srv-title{font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-weight:600;margin-bottom:.5rem;color:var(--panna)}
-    .srv-desc{font-size:.78rem;color:rgba(244,237,228,.38);line-height:1.9;font-weight:300;margin-bottom:1rem}
-    .srv-link{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sabbia);display:flex;align-items:center;gap:.35rem}
+    .srv-n{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:rgba(255,255,255,.85);line-height:1;margin-bottom:.4rem}
+    .srv-ico{font-size:1.8rem;margin-bottom:.75rem;display:block}
+    .srv-title{font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-weight:600;margin-bottom:.5rem;color:#ffffff}
+    .srv-desc{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.9;font-weight:300;margin-bottom:1rem}
+    .srv-link{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#CEE08F;display:flex;align-items:center;gap:.35rem}
     .srv-link svg{width:12px;height:12px;transition:transform .2s}
     .srv-item:hover .srv-link svg{transform:translateX(4px)}
 
@@ -196,8 +232,8 @@
     .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
     @media(max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:560px){.blog-grid{grid-template-columns:1fr}}
-    .bcard{display:block;border:1px solid rgba(212,184,150,.08);border-radius:3px;overflow:hidden;transition:border-color .3s,transform .3s}
-    .bcard:hover{border-color:rgba(212,184,150,.22);transform:translateY(-4px)}
+    .bcard{display:block;border:1px solid rgba(255,255,255,.35);border-radius:5px;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+    .bcard:hover{border-color:rgba(255,255,255,.7);transform:translateY(-5px);box-shadow:0 8px 28px rgba(0,0,0,.18)}
     .bcard-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
     .bcard-body{padding:.95rem 1.1rem;background:rgba(255,255,255,.025)}
     .bcard-cat{font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(212,184,150,.12);color:var(--sabbia);padding:.14rem .45rem;border-radius:2px;display:inline-block;margin-bottom:.4rem}
@@ -237,8 +273,23 @@
       transform-origin:bottom center;
     }
     @media(max-width:900px){
-      .cta-woman-col{display:none}
+      .cta-inner-wrap{grid-template-columns:1fr;grid-template-rows:auto auto}
+      .cta-woman-col{
+        display:block;
+        order:-1;          /* viene PRIMA del testo */
+        max-height:280px;
+        overflow:hidden;
+        display:flex;align-items:flex-end;justify-content:center;
+      }
+      .cta-woman-img{
+        max-width:220px !important;
+        width:220px !important;
+        height:auto;
+        margin:0 auto;
+        display:block;
+      }
       .cta-sec{text-align:center}
+      .cta-text-col{padding:2rem 1.5rem 3rem !important}
       .cta-btns{justify-content:center}
     }
     .cta-text-col{
@@ -407,8 +458,24 @@
   <div class="nav-cta">
     <span class="nav-tel">049 884 3484</span>
     <a href="contatti.html" class="nav-btn">Valutazione gratuita</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html"    onclick="toggleMenu()">Home</a>
+  <a href="immobili.html" onclick="toggleMenu()">Immobili</a>
+  <a href="servizi.html"  onclick="toggleMenu()">Servizi</a>
+  <a href="chi-siamo.html" onclick="toggleMenu()">Chi siamo</a>
+  <a href="blog.html"     onclick="toggleMenu()">Blog</a>
+  <a href="contatti.html" onclick="toggleMenu()">Contatti</a>
+  <a href="faq.html"      onclick="toggleMenu()">FAQ</a>
+  <div class="mm-tel">049 884 3484</div>
+  <a href="contatti.html" class="mm-btn" onclick="toggleMenu()">Valutazione gratuita →</a>
+</div>
 
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
@@ -953,6 +1020,15 @@ function submitForm(){
     document.getElementById('chat-prog').style.width='100%';
     document.getElementById('chat-counter').textContent='✅ Consulenza richiesta!';
   },500);
+}
+
+/* ══ HAMBURGER MENU ══ */
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobile-menu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
 }
 
 /* ══ PIOGGIA LEGGERA ══ */
