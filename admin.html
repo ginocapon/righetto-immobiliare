@@ -932,9 +932,11 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                   <label>Tipo Operazione *</label>
                   <select id="f_tipo_operazione" required>
                     <option value="">Seleziona...</option>
-                    <option value="vendita">Vendita</option>
-                    <option value="affitto">Affitto</option>
-                    <option value="asta">Asta</option>
+                    <option value="vendita">🏷️ In Vendita</option>
+                    <option value="affitto">🔑 In Affitto</option>
+                    <option value="affitto_commerciale">🏢 In Affitto Commerciale</option>
+                    <option value="affitto_residenziale">🏠 In Affitto Residenziale</option>
+                    <option value="asta">⚖️ Asta Giudiziaria</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -974,8 +976,9 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                   <input type="text" id="f_comune" value="Padova" placeholder="Padova">
                 </div>
                 <div class="form-group form-full">
-                  <label>Indirizzo</label>
+                  <label>Indirizzo <span style="background:#e67e22;color:white;font-size:0.65rem;padding:2px 6px;border-radius:4px;margin-left:4px">🔒 SOLO OPERATORE</span></label>
                   <input type="text" id="f_indirizzo" placeholder="es. Via Roma 12, Padova">
+                  <small style="color:var(--caffe2);font-size:0.7rem">⚠️ Nascosto al pubblico — visibile solo nell'admin</small>
                 </div>
                 <div class="form-group">
                   <label>Latitudine</label>
@@ -1215,7 +1218,11 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                       <option value="intera proprieta">Intera Proprietà</option>
                       <option value="nuda proprieta">Nuda Proprietà</option>
                       <option value="usufrutto">Usufrutto</option>
+                      <option value="affitto residenziale">Affitto Residenziale</option>
+                      <option value="affitto commerciale">Affitto Commerciale</option>
                       <option value="affitto a riscatto">Affitto a Riscatto</option>
+                      <option value="locazione transitoria">Locazione Transitoria</option>
+                      <option value="comodato d'uso">Comodato d'Uso</option>
                     </select>
                   </div>
                   <div class="form-group">
