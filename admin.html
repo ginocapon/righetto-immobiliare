@@ -1028,6 +1028,11 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                     <option>E</option><option>F</option><option>G</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label>⚡ IPE — Indice Prest. Energetica (kWh/m³ anno)</label>
+                  <input type="number" id="f_ipe_kwh" step="0.01" min="0" placeholder="es. 112.00">
+                  <small style="color:var(--caffe2);font-size:0.7rem">Valore numerico riportato sull'APE — es. 112 kWh/m³ anno</small>
+                </div>
 
                 <!-- ═══ AMBIENTI ═══ -->
                 <div class="section-divider">🏠 Ambienti</div>
@@ -1692,7 +1697,7 @@ function editImmobile(imm) {
     'camere','bagni_totali','terrazzi_num','ripostigli','garage_num','garage_doppio',
     'posto_auto','mq_giardino','mq_lotto','esposizione',
     'impianto_elettrico','panorama','consegna','spese_condominio',
-    'rendita_catastale','valore_catastale','prezzo_reale'];
+    'rendita_catastale','valore_catastale','prezzo_reale','ipe_kwh','ipe_kwh'];
 
   fields.forEach(f => {
     const el = document.getElementById('f_' + f);
@@ -1757,6 +1762,8 @@ async function saveImmobile(e) {
     anno_costruzione: parseInt(document.getElementById('f_anno_costruzione').value) || null,
     stato: document.getElementById('f_stato').value || null,
     classe_energetica: document.getElementById('f_classe_energetica').value || null,
+    ipe_kwh: parseFloat(document.getElementById('f_ipe_kwh')?.value)||null,
+    ipe_kwh: parseFloat(document.getElementById('f_ipe_kwh')?.value)||null,
     garage: document.getElementById('f_garage').checked,
     giardino: document.getElementById('f_giardino').checked,
     terrazzo: document.getElementById('f_terrazzo').checked,
@@ -2313,7 +2320,7 @@ function doImport() {
   if (!raw) { errEl.textContent = '⚠️ Incolla il JSON!'; errEl.style.display = 'block'; return; }
   let data;
   try { data = JSON.parse(raw); } catch(e) { errEl.textContent = '❌ JSON non valido. Riprova.'; errEl.style.display = 'block'; return; }
-  const map = {codice:'f_codice',titolo:'f_titolo',tipo_operazione:'f_tipo_operazione',categoria:'f_categoria',tipologia:'f_tipologia',comune:'f_comune',indirizzo:'f_indirizzo',prezzo:'f_prezzo',superficie:'f_superficie',locali:'f_locali',camere:'f_camere',bagni_totali:'f_bagni_totali',piano:'f_piano',anno_costruzione:'f_anno_costruzione',stato_manutenzione:'f_stato_manutenzione',classe_energetica:'f_classe_energetica',esposizione:'f_esposizione',spese_condominio:'f_spese_condominio',consegna:'f_consegna',impianto_elettrico:'f_impianto_elettrico',num_accessi_carrai:'f_num_accessi_carrai',num_portoni:'f_num_portoni',garage_num:'f_garage_num',youtube_id:'f_youtube_id',virtual_tour:'f_virtual_tour',id_idealista:'f_id_idealista',note_interne:'f_note_interne',lat:'f_lat',lng:'f_lng'};
+  const map = {codice:'f_codice',titolo:'f_titolo',tipo_operazione:'f_tipo_operazione',categoria:'f_categoria',tipologia:'f_tipologia',comune:'f_comune',indirizzo:'f_indirizzo',prezzo:'f_prezzo',superficie:'f_superficie',locali:'f_locali',camere:'f_camere',bagni_totali:'f_bagni_totali',piano:'f_piano',anno_costruzione:'f_anno_costruzione',stato_manutenzione:'f_stato_manutenzione',classe_energetica:'f_classe_energetica',ipe_kwh:'f_ipe_kwh',esposizione:'f_esposizione',spese_condominio:'f_spese_condominio',consegna:'f_consegna',impianto_elettrico:'f_impianto_elettrico',num_accessi_carrai:'f_num_accessi_carrai',num_portoni:'f_num_portoni',garage_num:'f_garage_num',youtube_id:'f_youtube_id',virtual_tour:'f_virtual_tour',id_idealista:'f_id_idealista',note_interne:'f_note_interne',lat:'f_lat',lng:'f_lng'};
   Object.entries(map).forEach(([k,id])=>{const el=document.getElementById(id);if(el&&data[k]!==undefined&&data[k]!==null)el.value=data[k];});
   ['garage','giardino','terrazzo','cantina','ascensore','piscina','arredato','attivo','in_evidenza','venduto','affittato'].forEach(k=>{const el=document.getElementById('f_'+k);if(el&&data[k]!==undefined)el.checked=!!data[k];});
   // Le foto di Idealista NON vengono importate (copyright)
