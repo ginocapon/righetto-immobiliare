@@ -1532,170 +1532,483 @@ window.addEventListener('scroll',()=>{
    immobiliare.it, idealista.it, casa.it,
    subito.it, wikicasa.it, trovacasa.net)
 ══════════════════════════════════════════ */
-const FLOW=[
-  {
-    q:"Ciao! 👋 Sono Sara, consulente di Righetto Immobiliare.\n\nPer aiutarti al meglio ti faccio qualche domanda veloce. Cosa stai cercando?",
-    opts:["🏠 Voglio comprare casa","🔑 Cerco un immobile in affitto","💰 Voglio vendere il mio immobile","📊 Voglio una valutazione gratuita","🔄 Devo vendere per comprare"]
-  },
-  {
-    q:"In quale zona stai cercando?",
-    opts:["🏙️ Padova centro storico","🌿 Prima periferia (Arcella, Pontevigodarzere…)","🏘️ Comuni limitrofi (Albignasego, Selvazzano…)","📍 Provincia (Limena, Vigonza, Noventa…)","🗺️ Sono flessibile sulla zona"]
-  },
-  {
-    q:"Che tipologia di immobile preferisci?",
-    opts:["🏠 Villa o villetta singola","🏘️ Villa bifamiliare o schiera","🏢 Appartamento in condominio","🏡 Casa indipendente","🏬 Locale commerciale o ufficio"]
-  },
-  {
-    q:"Quanti locali stai cercando?",
-    opts:["Monolocale (1 locale)","Bilocale (2 locali)","Trilocale (3 locali)","Quadrilocale (4 locali)","5 locali o più"]
-  },
-  {
-    q:"Qual è la superficie indicativa che cerchi?",
-    opts:["Fino a 50 mq","50 – 80 mq","80 – 120 mq","120 – 180 mq","Oltre 180 mq"]
-  },
-  {
-    q:"Hai esigenze specifiche che non vuoi rinunciare?",
-    opts:["🌳 Giardino privato","🚗 Garage o box auto","☀️ Piano alto / ottima luminosità","🏊 Piscina","🐕 Animali ammessi (affitto)"]
-  },
-  {
-    q:"Qual è il tuo budget massimo?",
-    opts:["Fino a €100.000","€100.000 – €200.000","€200.000 – €350.000","€350.000 – €500.000","Oltre €500.000"]
-  },
-  {
-    q:"Come intendi finanziare l'acquisto?",
-    opts:["💳 Acquisto interamente in contanti","🏦 Mutuo già approvato dalla banca","📝 Devo ancora richiedere il mutuo","🤝 In parte contanti, in parte mutuo","⏳ Devo ancora decidere"]
-  },
-  {
-    q:"Hai già un immobile da vendere prima di acquistare?",
-    opts:["No, sono libero di acquistare subito","Sì, ho un immobile da vendere prima","Sto già vendendo (già sul mercato)","Ho già venduto e sono pronto","Non si applica al mio caso"]
-  },
-  {
-    q:"Entro quando vorresti concludere?",
-    opts:["⚡ Urgente — entro 1-2 mesi","📅 Entro 3-6 mesi","🗓️ Entro l'anno","⏳ Non ho fretta, sto valutando","🔍 Sto solo esplorando il mercato"]
-  },
-  {
-    q:"È il tuo primo acquisto immobiliare?",
-    opts:["✅ Sì, prima casa","🔄 No, ho già proprietà","📦 Cambio casa (vendo e compro)","🏢 Investimento / messa a reddito","🎓 Acquisto per figlio/familiare"]
-  },
-  {
-    q:"Quanto conta per te la vicinanza ai servizi?",
-    opts:["🏫 Scuole e asili nido","🚌 Fermata bus o stazione","🛒 Supermercati e negozi","🏥 Ospedale o medico","💼 Vicino al posto di lavoro"]
-  },
-  {
-    q:"Preferisci immobile nuovo o usato?",
-    opts:["🆕 Solo nuova costruzione","🔧 Usato da ristrutturare (prezzo vantaggioso)","✨ Usato già ristrutturato","💡 Indifferente — guardo entrambi","🏗️ Anche su progetto / in costruzione"]
-  },
-  {
-    q:"La tua famiglia è composta da...",
-    opts:["👤 Vivo da solo/a","👫 Coppia senza figli","👨‍👩‍👧 Famiglia con 1-2 figli","👨‍👩‍👧‍👦 Famiglia numerosa (3+ figli)","👴 Pensionati / anziani"]
-  },
-  {
-    q:"Lavori a Padova o ti sposti quotidianamente?",
-    opts:["💼 Lavoro a Padova centro","🚗 Mi sposto fuori Padova ogni giorno","🏠 Lavoro da remoto / da casa","🔄 Lavoro variabile — non ho vincoli","🎓 Studio all'università di Padova"]
-  },
-  {
-    q:"Stai già visitando immobili?",
-    opts:["No, sto ancora solo cercando online","Ho visto qualcosa su immobiliare.it","Ho visto immobili con altre agenzie","Ho visto qualcosa sul vostro sito","Ho già un'idea molto precisa di cosa voglio"]
-  },
-  {
-    q:"Cosa ti ha deluso nelle esperienze precedenti con le agenzie?",
-    opts:["⏰ Tempi lunghi senza risultati","📞 Scarsa comunicazione e aggiornamenti","💰 Proposte fuori budget","🏚️ Immobili di qualità inferiore alle aspettative","✅ Prima volta — nessuna esperienza precedente"]
-  },
-  {
-    q:"Come preferisci essere ricontattato?",
-    opts:["📞 Telefonata diretta","💬 WhatsApp (più comodo)","📧 Email","🏢 Preferisco venire in agenzia","📹 Videochiamata / Teams"]
-  },
-  {
-    q:"In quale fascia oraria sei disponibile?",
-    opts:["🌅 Mattina (9:00–12:00)","☀️ Primo pomeriggio (12:00–15:00)","🌆 Tardo pomeriggio (15:00–18:00)","🌙 Sera (18:00–20:00)","📅 Quando volete voi, mi organizzo"]
-  },
-  {
-    q:"Perfetto! 🎉 Ho raccolto tutto quello che mi serve.\n\nUn nostro agente ti contatterà con proposte personalizzate entro oggi.\n\nLasciami i tuoi contatti:",
-    opts:[],
-    showForm:true
-  }
+
+// ══════════════════════════════════════════════════════════
+// CHATBOT INTELLIGENTE v2 — RIGHETTO IMMOBILIARE
+// Flow adattivo: Affitto / Vendita / Valutazione
+// ══════════════════════════════════════════════════════════
+
+// ── Dati base ──
+const COMUNI_PADOVA = [
+  "Padova","Albignasego","Selvazzano Dentro","Limena","Vigonza",
+  "Cadoneghe","Rubano","Vigodarzere","Noventa Padovana","Saonara",
+  "Ponte San Nicolò","Piove di Sacco","Abano Terme","Montegrotto Terme",
+  "Este","Monselice","Camposampiero","Cittadella","Stra",
+  "Casalserugo","Maserà di Padova","Veggiano","Cervarese Santa Croce",
+  "Mestrino","Saccolongo","Rovolon","Torreglia","Galzignano",
+  "Teolo","Due Carrare"
 ];
 
-let chatOpen=false,step=0,answers=[],started=false;
+const TIPOLOGIE_IMMOBILE = {
+  residenziale: [
+    "🏢 Appartamento","🏠 Villa singola","🏘️ Villa bifamiliare / schiera",
+    "🏡 Casa indipendente","🏰 Attico / Mansarda","🛏️ Monolocale / Studio"
+  ],
+  commerciale: [
+    "🏬 Negozio / Locale commerciale","🏢 Ufficio / Studio professionale",
+    "🏭 Capannone / Magazzino","🔧 Laboratorio artigianale",
+    "🅿️ Box / Posto auto / Garage","🌾 Terreno edificabile / Rustico"
+  ]
+};
 
-function toggleChat(){
-  chatOpen=!chatOpen;
-  const box=document.getElementById('chat-box');
-  box.classList.toggle('open',chatOpen);
-  if(chatOpen&&!started){
-    started=true;
-    document.getElementById('chat-badge').style.display='none';
-    setTimeout(()=>showStep(0),350);
-  }
-}
-function updateProgress(){
-  const pct=Math.min((step/(FLOW.length-1))*100,100);
-  document.getElementById('chat-prog').style.width=pct+'%';
-  document.getElementById('chat-counter').textContent=
-    step<FLOW.length-1?`Domanda ${step+1} di ${FLOW.length-1}`:'✅ Quasi fatto!';
-}
-function showTyping(cb){
-  const msgs=document.getElementById('chat-msgs');
-  const t=document.createElement('div');
-  t.className='msg msg-typing';
-  t.innerHTML='<div class="typing-dots"><span></span><span></span><span></span></div>';
-  msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(()=>{t.remove();cb();},750);
-}
-function addMsg(text,type){
-  const msgs=document.getElementById('chat-msgs');
-  const m=document.createElement('div');
-  m.className=`msg msg-${type}`;
-  m.innerHTML=text.replace(/\n/g,'<br>');
-  msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;
-}
-function showStep(i){
-  step=i;updateProgress();
-  const s=FLOW[i];
-  const opts=document.getElementById('chat-opts');
-  const form=document.getElementById('chat-form');
-  opts.innerHTML='';form.style.display='none';
-  showTyping(()=>{
-    addMsg(s.q,'bot');
-    if(s.showForm){
-      form.style.display='flex';
-    } else {
-      s.opts.forEach(o=>{
-        const btn=document.createElement('button');
-        btn.className='chat-opt';btn.textContent=o;
-        btn.onclick=()=>selectOpt(o,i);
+// ── Contesto conversazione ──
+let CTX = {
+  intent: null,   // 'affitto' | 'vendita' | 'valutazione'
+  comune: null,
+  categoria: null, // 'residenziale' | 'commerciale'
+  tipologia: null,
+  locali: null,
+  budget: null,
+  superficie: null,
+  extras: [],
+  contatto: null,
+  fase: 'start'
+};
+
+let answers = [];
+let chatStarted = false;
+let chatOpen = false;
+
+// ══════════════════════════════════════════════
+// ENGINE: mostra messaggio bot con typing
+// ══════════════════════════════════════════════
+function botSay(text, opzioni, tipo_input) {
+  const msgs = document.getElementById('chat-msgs');
+  const opts = document.getElementById('chat-opts');
+  const form = document.getElementById('chat-form');
+  opts.innerHTML = '';
+  form.style.display = 'none';
+
+  const t = document.createElement('div');
+  t.className = 'msg msg-typing';
+  t.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(t);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    t.remove();
+    const m = document.createElement('div');
+    m.className = 'msg msg-bot';
+    m.innerHTML = text.replace(/\n/g,'<br>');
+    msgs.appendChild(m);
+    msgs.scrollTop = msgs.scrollHeight;
+
+    if (tipo_input === 'form') {
+      form.style.display = 'flex';
+    } else if (tipo_input === 'comune_input') {
+      // Input libero per il comune
+      mostraInputComune();
+    } else if (opzioni && opzioni.length) {
+      opzioni.forEach(o => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-opt';
+        btn.innerHTML = typeof o === 'string' ? o : o.label;
+        btn.onclick = () => {
+          userSay(typeof o === 'string' ? o : o.label);
+          if (typeof o === 'function') o.action();
+          else if (o.action) o.action();
+        };
         opts.appendChild(btn);
       });
     }
+    aggiornaProgress();
+  }, 700);
+}
+
+function userSay(text) {
+  document.getElementById('chat-opts').innerHTML = '';
+  const msgs = document.getElementById('chat-msgs');
+  const m = document.createElement('div');
+  m.className = 'msg msg-user';
+  m.textContent = text;
+  msgs.appendChild(m);
+  msgs.scrollTop = msgs.scrollHeight;
+  answers.push(text);
+}
+
+function aggiornaProgress() {
+  const fasi = ['start','intent','comune','tipologia','dettagli','contatto','fine'];
+  const idx = fasi.indexOf(CTX.fase);
+  const pct = Math.max(8, Math.round((idx / (fasi.length-1)) * 100));
+  document.getElementById('chat-prog').style.width = pct + '%';
+  const labels = {
+    start:'Iniziamo!', intent:'Tipo ricerca', comune:'Zona',
+    tipologia:'Tipologia', dettagli:'Dettagli', contatto:'Contatti', fine:'✅ Completato!'
+  };
+  document.getElementById('chat-counter').textContent = labels[CTX.fase] || '';
+}
+
+function mostraInputComune() {
+  const opts = document.getElementById('chat-opts');
+  opts.innerHTML = '';
+  // Bottoni comuni più richiesti + "altro"
+  const comuni_top = ["Padova","Albignasego","Limena","Selvazzano","Vigonza","Cadoneghe","Rubano","Noventa Pad.","Altro comune"];
+  comuni_top.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'chat-opt';
+    btn.textContent = c;
+    btn.onclick = () => {
+      const comune = c === "Altro comune" ? null : c;
+      userSay(c);
+      if (comune) {
+        CTX.comune = comune;
+        setTimeout(() => faseCategoria(), 400);
+      } else {
+        // chiedi con input libero
+        setTimeout(() => chiediComuneLibero(), 400);
+      }
+    };
+    opts.appendChild(btn);
   });
 }
-function selectOpt(opt,i){
-  addMsg(opt,'user');
-  answers.push({q:FLOW[i].q.split('\n')[0],a:opt});
-  document.getElementById('chat-opts').innerHTML='';
-  const next=i+1;
-  if(next<FLOW.length)setTimeout(()=>showStep(next),380);
+
+function chiediComuneLibero() {
+  const opts = document.getElementById('chat-opts');
+  opts.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'display:flex;gap:.4rem;padding:.3rem 0;width:100%';
+  const inp = document.createElement('input');
+  inp.type = 'text';
+  inp.placeholder = 'Scrivi il comune...';
+  inp.style.cssText = 'flex:1;padding:.5rem .8rem;border:1px solid #A8C0D6;border-radius:4px;font-size:.8rem;outline:none;color:#1E3A5C';
+  const btn = document.createElement('button');
+  btn.textContent = '→';
+  btn.style.cssText = 'background:#3A5578;color:#fff;border:none;padding:.5rem .9rem;border-radius:4px;cursor:pointer;font-size:.9rem';
+  btn.onclick = () => {
+    const v = inp.value.trim();
+    if (!v) return;
+    userSay(v);
+    CTX.comune = v;
+    opts.innerHTML = '';
+    setTimeout(() => faseCategoria(), 400);
+  };
+  inp.onkeydown = e => { if(e.key==='Enter') btn.click(); };
+  wrap.appendChild(inp);
+  wrap.appendChild(btn);
+  opts.appendChild(wrap);
+  inp.focus();
 }
+
+// ══════════════════════════════════════════════
+// FASI DEL FLOW
+// ══════════════════════════════════════════════
+
+function faseStart() {
+  CTX.fase = 'start';
+  botSay(
+    "Ciao! 👋 Sono <strong>Sara</strong>, consulente di Righetto Immobiliare.\n\nCome posso aiutarti oggi?",
+    [
+      { label: "🔑 Cerco un immobile in <strong>affitto</strong>",
+        action: () => { CTX.intent='affitto'; setTimeout(()=>faseComune(),400); }},
+      { label: "🏠 Cerco un immobile in <strong>vendita</strong>",
+        action: () => { CTX.intent='vendita'; setTimeout(()=>faseComune(),400); }},
+      { label: "📊 Voglio una <strong>valutazione gratuita</strong>",
+        action: () => { CTX.intent='valutazione'; setTimeout(()=>faseValutazione(),400); }},
+    ]
+  );
+}
+
+function faseComune() {
+  CTX.fase = 'comune';
+  const tipo = CTX.intent === 'affitto' ? 'in affitto' : 'in vendita';
+  botSay(
+    `Ottimo! Cerchi un immobile <strong>${tipo}</strong>.\n\nIn quale comune o zona stai cercando?`,
+    null, 'comune_input'
+  );
+}
+
+function faseCategoria() {
+  CTX.fase = 'tipologia';
+  const tipo = CTX.intent === 'affitto' ? 'affittare' : 'acquistare';
+  botSay(
+    `${CTX.comune}! Buona scelta. 📍\n\nVuoi ${tipo} un immobile <strong>residenziale</strong> o <strong>commerciale</strong>?`,
+    [
+      { label: "🏠 Residenziale (casa, appartamento, villa…)",
+        action: () => { CTX.categoria='residenziale'; setTimeout(()=>faseTipologia(),400); }},
+      { label: "🏬 Commerciale (ufficio, negozio, capannone…)",
+        action: () => { CTX.categoria='commerciale'; setTimeout(()=>faseTipologia(),400); }},
+    ]
+  );
+}
+
+function faseTipologia() {
+  const lista = TIPOLOGIE_IMMOBILE[CTX.categoria];
+  botSay(
+    "Che tipologia di immobile stai cercando?",
+    lista.map(t => ({
+      label: t,
+      action: () => { CTX.tipologia = t; setTimeout(()=>faseDettagli(),400); }
+    }))
+  );
+}
+
+function faseDettagli() {
+  // Flow diverso per affitto vs vendita
+  if (CTX.intent === 'affitto') {
+    faseDettagliAffitto();
+  } else {
+    faseDettagliVendita();
+  }
+}
+
+// ── FLOW AFFITTO ──────────────────────────────
+function faseDettagliAffitto() {
+  CTX.fase = 'dettagli';
+  botSay(
+    "Quanti locali cerchi?",
+    [
+      { label:"Monolocale", action:()=>{ CTX.locali='Monolocale'; setTimeout(()=>faseBudgetAffitto(),400); }},
+      { label:"Bilocale",   action:()=>{ CTX.locali='Bilocale';   setTimeout(()=>faseBudgetAffitto(),400); }},
+      { label:"Trilocale",  action:()=>{ CTX.locali='Trilocale';  setTimeout(()=>faseBudgetAffitto(),400); }},
+      { label:"4 locali",   action:()=>{ CTX.locali='4 locali';   setTimeout(()=>faseBudgetAffitto(),400); }},
+      { label:"5+ locali",  action:()=>{ CTX.locali='5+ locali';  setTimeout(()=>faseBudgetAffitto(),400); }},
+    ]
+  );
+}
+
+function faseBudgetAffitto() {
+  botSay(
+    "Qual è il canone mensile massimo che vuoi spendere?",
+    [
+      { label:"Fino a €400/mese",      action:()=>{ CTX.budget='≤400€/mese';   setTimeout(()=>faseExtrasAffitto(),400); }},
+      { label:"€400 – €600/mese",      action:()=>{ CTX.budget='400-600€/mese'; setTimeout(()=>faseExtrasAffitto(),400); }},
+      { label:"€600 – €900/mese",      action:()=>{ CTX.budget='600-900€/mese'; setTimeout(()=>faseExtrasAffitto(),400); }},
+      { label:"€900 – €1.300/mese",    action:()=>{ CTX.budget='900-1300€/mese';setTimeout(()=>faseExtrasAffitto(),400); }},
+      { label:"Oltre €1.300/mese",     action:()=>{ CTX.budget='>1300€/mese';   setTimeout(()=>faseExtrasAffitto(),400); }},
+    ]
+  );
+}
+
+function faseExtrasAffitto() {
+  botSay(
+    "Hai esigenze particolari? (puoi scegliere)",
+    [
+      { label:"🐕 Animali ammessi",    action:()=>{ CTX.extras.push('Animali ok'); setTimeout(()=>faseDisponibilitaAffitto(),400); }},
+      { label:"🚗 Box / Garage",       action:()=>{ CTX.extras.push('Box auto');   setTimeout(()=>faseDisponibilitaAffitto(),400); }},
+      { label:"🌳 Giardino o terrazzo",action:()=>{ CTX.extras.push('Giardino');   setTimeout(()=>faseDisponibilitaAffitto(),400); }},
+      { label:"🛋️ Arredato",           action:()=>{ CTX.extras.push('Arredato');   setTimeout(()=>faseDisponibilitaAffitto(),400); }},
+      { label:"➡️ Nessuna preferenza", action:()=>{ setTimeout(()=>faseDisponibilitaAffitto(),400); }},
+    ]
+  );
+}
+
+function faseDisponibilitaAffitto() {
+  botSay(
+    "Da quando ti serve l'immobile?",
+    [
+      { label:"⚡ Subito / urgente",         action:()=>{ CTX.disponibilita='Subito'; setTimeout(()=>faseRispostaDiretta(),500); }},
+      { label:"📅 Entro 1-2 mesi",           action:()=>{ CTX.disponibilita='1-2 mesi'; setTimeout(()=>faseRispostaDiretta(),500); }},
+      { label:"🗓️ Entro 3-6 mesi",          action:()=>{ CTX.disponibilita='3-6 mesi'; setTimeout(()=>faseRispostaDiretta(),500); }},
+      { label:"🔍 Sto solo valutando",       action:()=>{ CTX.disponibilita='Solo valutazione'; setTimeout(()=>faseRispostaDiretta(),500); }},
+    ]
+  );
+}
+
+// ── FLOW VENDITA ─────────────────────────────
+function faseDettagliVendita() {
+  CTX.fase = 'dettagli';
+  botSay(
+    "Quanti locali stai cercando?",
+    [
+      { label:"Monolocale", action:()=>{ CTX.locali='Monolocale'; setTimeout(()=>faseBudgetVendita(),400); }},
+      { label:"Bilocale",   action:()=>{ CTX.locali='Bilocale';   setTimeout(()=>faseBudgetVendita(),400); }},
+      { label:"Trilocale",  action:()=>{ CTX.locali='Trilocale';  setTimeout(()=>faseBudgetVendita(),400); }},
+      { label:"4 locali",   action:()=>{ CTX.locali='4 locali';   setTimeout(()=>faseBudgetVendita(),400); }},
+      { label:"5+ locali / Villa", action:()=>{ CTX.locali='5+ locali'; setTimeout(()=>faseBudgetVendita(),400); }},
+    ]
+  );
+}
+
+function faseBudgetVendita() {
+  botSay(
+    "Qual è il tuo budget massimo d'acquisto?",
+    [
+      { label:"Fino a €100.000",       action:()=>{ CTX.budget='≤100k';   setTimeout(()=>faseFinanziamento(),400); }},
+      { label:"€100.000 – €200.000",   action:()=>{ CTX.budget='100-200k'; setTimeout(()=>faseFinanziamento(),400); }},
+      { label:"€200.000 – €350.000",   action:()=>{ CTX.budget='200-350k'; setTimeout(()=>faseFinanziamento(),400); }},
+      { label:"€350.000 – €500.000",   action:()=>{ CTX.budget='350-500k'; setTimeout(()=>faseFinanziamento(),400); }},
+      { label:"Oltre €500.000",        action:()=>{ CTX.budget='>500k';    setTimeout(()=>faseFinanziamento(),400); }},
+    ]
+  );
+}
+
+function faseFinanziamento() {
+  botSay(
+    "Come intendi finanziare l'acquisto?",
+    [
+      { label:"💳 Tutto in contanti",          action:()=>{ CTX.finanziamento='Contanti';        setTimeout(()=>faseExtrasVendita(),400); }},
+      { label:"🏦 Mutuo già approvato",        action:()=>{ CTX.finanziamento='Mutuo approvato'; setTimeout(()=>faseExtrasVendita(),400); }},
+      { label:"📝 Devo richiedere il mutuo",   action:()=>{ CTX.finanziamento='Mutuo da richiedere'; setTimeout(()=>faseExtrasVendita(),400); }},
+      { label:"🤝 Parte contanti + mutuo",     action:()=>{ CTX.finanziamento='Misto';           setTimeout(()=>faseExtrasVendita(),400); }},
+    ]
+  );
+}
+
+function faseExtrasVendita() {
+  botSay(
+    "Hai preferenze particolari sull'immobile?",
+    [
+      { label:"🌳 Giardino privato",         action:()=>{ CTX.extras.push('Giardino'); setTimeout(()=>faseImmobileVendere(),400); }},
+      { label:"🚗 Box / Garage incluso",     action:()=>{ CTX.extras.push('Garage');   setTimeout(()=>faseImmobileVendere(),400); }},
+      { label:"🆕 Preferisco nuovo / ristrutturato", action:()=>{ CTX.extras.push('Nuovo'); setTimeout(()=>faseImmobileVendere(),400); }},
+      { label:"☀️ Piano alto / luminoso",    action:()=>{ CTX.extras.push('Luminoso'); setTimeout(()=>faseImmobileVendere(),400); }},
+      { label:"➡️ Nessuna preferenza",       action:()=>{ setTimeout(()=>faseImmobileVendere(),400); }},
+    ]
+  );
+}
+
+function faseImmobileVendere() {
+  botSay(
+    "Hai un immobile da vendere prima di acquistare?",
+    [
+      { label:"No, sono libero di acquistare subito", action:()=>{ CTX.vendereFirst=false; setTimeout(()=>faseRispostaDiretta(),500); }},
+      { label:"Sì, ho un immobile da vendere prima",  action:()=>{ CTX.vendereFirst=true;  setTimeout(()=>faseRispostaDiretta(),500); }},
+      { label:"Sto già vendendo — quasi pronto",      action:()=>{ CTX.vendereFirst='quasi'; setTimeout(()=>faseRispostaDiretta(),500); }},
+    ]
+  );
+}
+
+// ── FLOW VALUTAZIONE ─────────────────────────
+function faseValutazione() {
+  CTX.fase = 'valutazione';
+  botSay(
+    "Perfetto! La valutazione è <strong>completamente gratuita</strong> e senza impegno. 📊\n\nIn quale comune si trova il tuo immobile?",
+    null, 'comune_input'
+  );
+  // Override: dopo il comune chiede tipologia poi contatti
+  const origFaseCategoria = faseCategoria;
+  faseCategoria = function() {
+    CTX.fase = 'tipologia';
+    botSay(
+      "Che tipo di immobile devi valutare?",
+      [
+        "🏢 Appartamento","🏠 Villa / Casa indipendente",
+        "🏘️ Bifamiliare / Schiera","🏬 Locale commerciale",
+        "🏭 Capannone / Magazzino","🌾 Terreno"
+      ].map(t => ({
+        label: t,
+        action: () => { CTX.tipologia = t; setTimeout(()=>faseMotivazione(),400); }
+      }))
+    );
+    faseCategoria = origFaseCategoria;
+  };
+}
+
+function faseMotivazione() {
+  botSay(
+    "Perché stai valutando l'immobile?",
+    [
+      { label:"💰 Voglio venderlo",          action:()=>{ CTX.motivazione='Vendita';   setTimeout(()=>faseConcludiValutazione(),400); }},
+      { label:"📋 Devo dividerlo (eredità)", action:()=>{ CTX.motivazione='Eredità';   setTimeout(()=>faseConcludiValutazione(),400); }},
+      { label:"🏦 Per la banca / mutuo",     action:()=>{ CTX.motivazione='Banca';     setTimeout(()=>faseConcludiValutazione(),400); }},
+      { label:"📊 Solo per curiosità",       action:()=>{ CTX.motivazione='Curiosità'; setTimeout(()=>faseConcludiValutazione(),400); }},
+    ]
+  );
+}
+
+function faseConcludiValutazione() {
+  botSay(
+    "Ottimo! Un nostro esperto verrà a valutare l'immobile gratuitamente. 🏠\n\nPer fissare l'appuntamento ho bisogno dei tuoi contatti:",
+    [], 'form'
+  );
+  CTX.fase = 'contatto';
+}
+
+// ── RISPOSTA DIRETTA post-dettagli ───────────
+function faseRispostaDiretta() {
+  CTX.fase = 'contatto';
+  const tipo = CTX.intent === 'affitto' ? 'in affitto' : 'in vendita';
+  const luogo = CTX.comune || 'Padova e provincia';
+
+  // Genera risposta personalizzata
+  let msg = `✅ <strong>Ho capito cosa cerchi!</strong>\n\n`;
+  msg += `📍 <strong>Zona:</strong> ${luogo}\n`;
+  msg += `🏠 <strong>Tipologia:</strong> ${CTX.tipologia || 'Immobile residenziale'}\n`;
+  if(CTX.locali) msg += `🚪 <strong>Locali:</strong> ${CTX.locali}\n`;
+  if(CTX.budget) msg += `💰 <strong>Budget:</strong> ${CTX.budget}\n`;
+  if(CTX.extras && CTX.extras.length) msg += `⭐ <strong>Extras:</strong> ${CTX.extras.join(', ')}\n`;
+  msg += `\nAbbiamo immobili ${tipo} <strong>${luogo}</strong> che corrispondono al tuo profilo!\n\nLasciami i tuoi contatti — ti mando subito le proposte selezionate:`;
+
+  botSay(msg, [], 'form');
+}
+
+// ══════════════════════════════════════════════
+// INIT + EVENTI
+// ══════════════════════════════════════════════
+function toggleChat(){
+  chatOpen = !chatOpen;
+  const box = document.getElementById('chat-box');
+  box.classList.toggle('open', chatOpen);
+  if(chatOpen && !chatStarted){
+    chatStarted = true;
+    document.getElementById('chat-badge').style.display = 'none';
+    setTimeout(()=>faseStart(), 350);
+  }
+}
+
+function updateProgress(){} // compatibilità (ridefinita sopra)
+
 function submitForm(){
-  const nome=document.getElementById('cf-nome').value.trim();
-  const tel=document.getElementById('cf-tel').value.trim();
-  if(!nome||!tel){alert('Inserisci almeno nome e telefono!');return;}
-  document.getElementById('chat-form').style.display='none';
-  document.getElementById('chat-opts').innerHTML='';
-  const summary=answers.map(a=>`• ${a.a}`).join('\n');
-  const waMsg=encodeURIComponent(`Ciao! Ho compilato il questionario.\nNome: ${nome}\nTel: ${tel}\n\nRisposte:\n${summary}`);
+  const nome = document.getElementById('cf-nome').value.trim();
+  const tel  = document.getElementById('cf-tel').value.trim();
+  if(!nome || !tel){ alert('Inserisci almeno nome e telefono!'); return; }
+  document.getElementById('chat-form').style.display = 'none';
+  document.getElementById('chat-opts').innerHTML = '';
+
+  const dettagli = [
+    CTX.intent && `Richiesta: ${CTX.intent}`,
+    CTX.comune && `Zona: ${CTX.comune}`,
+    CTX.tipologia && `Tipo: ${CTX.tipologia}`,
+    CTX.locali && `Locali: ${CTX.locali}`,
+    CTX.budget && `Budget: ${CTX.budget}`,
+    CTX.extras && CTX.extras.length && `Extras: ${CTX.extras.join(', ')}`,
+  ].filter(Boolean).join('\n');
+
+  const waMsg = encodeURIComponent(
+    `Ciao! Ho usato il chatbot di Righetto Immobiliare.\n`+
+    `Nome: ${nome}\nTel: ${tel}\n\n${dettagli}`
+  );
+
   setTimeout(()=>{
-    addMsg(`Grazie ${nome}! 🎉\n\nIl nostro agente ti chiamerà entro oggi al <strong>${tel}</strong>.\n\nPuoi anche scriverci subito su WhatsApp!`,'bot');
-    const opts=document.getElementById('chat-opts');
-    const wa=document.createElement('button');
-    wa.className='chat-opt';
-    wa.innerHTML='💬 Apri WhatsApp ora';
-    wa.style.cssText='background:#25d366;color:#fff;border:none;font-weight:600;';
-    wa.onclick=()=>window.open(`https://wa.me/393488621888?text=${waMsg}`,'_blank');
+    const msgs = document.getElementById('chat-msgs');
+    const m = document.createElement('div');
+    m.className = 'msg msg-bot';
+    m.innerHTML = `Grazie <strong>${nome}</strong>! 🎉<br><br>Il nostro agente ti chiamerà entro oggi al <strong>${tel}</strong> con le proposte personalizzate.<br><br>Puoi anche scriverci subito su WhatsApp!`;
+    msgs.appendChild(m);
+    msgs.scrollTop = msgs.scrollHeight;
+
+    const opts = document.getElementById('chat-opts');
+    const wa = document.createElement('button');
+    wa.className = 'chat-opt';
+    wa.innerHTML = '💬 Apri WhatsApp ora';
+    wa.style.cssText = 'background:#25d366;color:#fff;border:none;font-weight:600;';
+    wa.onclick = ()=>window.open(`https://wa.me/393488621888?text=${waMsg}`,'_blank');
     opts.appendChild(wa);
-    document.getElementById('chat-prog').style.width='100%';
-    document.getElementById('chat-counter').textContent='✅ Consulenza richiesta!';
-  },500);
+
+    document.getElementById('chat-prog').style.width = '100%';
+    document.getElementById('chat-counter').textContent = '✅ Consulenza richiesta!';
+  }, 500);
+}
+
+// Funzioni typing / addMsg legacy (per compatibilità)
+function showTyping(cb){ setTimeout(cb,700); }
+function addMsg(t,type){
+  const msgs=document.getElementById('chat-msgs');
+  const m=document.createElement('div');
+  m.className=`msg msg-${type}`;
+  m.innerHTML=t;
+  msgs.appendChild(m);
+  msgs.scrollTop=msgs.scrollHeight;
 }
 
 
