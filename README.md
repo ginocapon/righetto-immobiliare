@@ -1,11 +1,1 @@
-[admin.html](https://github.com/user-attachments/files/25438165/admin.html)
-[blog.html](https://github.com/user-attachments/files/25438167/blog.html)[servizio-vendita.html](https://github.com/user-attachments/files/25438178/servizio-vendita.html)
-[servizi.html](https://github.com/user-attachments/files/25438177/servizi.html)
-[README.md](https://github.com/user-attachments/files/25438176/README.md)
-[privacy.html](https://github.com/user-attachments/files/25438175/privacy.html)
-[index.html](https://github.com/user-attachments/files/25438174/index.html)
-[immobili.html](https://github.com/user-attachments/files/25438173/immobili.html)
-[immobile.html](https://github.com/user-attachments/files/25438172/immobile.html)
-[faq.html](https://github.com/user-attachments/files/25438170/faq.html)
-[contatti.html](https://github.com/user-attachments/files/25438169/contatti.html)
-[chi-siamo.html](https://github.com/user-attachments/files/25438168/chi-siamo.html)
+
