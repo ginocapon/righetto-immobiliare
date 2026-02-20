@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Villa singola Curtarolo — Righetto Immobiliare Padova</title>
+  <meta name="description" id="page-desc" content="Villa singola 350 mq in vendita a Curtarolo (PD). 5 camere, 2 bagni, giardino 1.000 mq, garage doppio. Rif. LA0307 — Righetto Immobiliare Padova.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --nero:#0a0a0a;--bianco:#f5f2ed;--oro:#c9a84c;--oro2:#d4b86a;
+      --grigio:#6b6560;--gc:#e8e4de;--verde:#4a5c4e;--rosso:#b84c4c;
+      --blu:#2c4a7c;--sfondo:#f0ece6;--card:#fff;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--sfondo);color:var(--nero)}
+
+    /* ── HEADER ── */
+    header{background:var(--nero);position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.07)}
+    .header-inner{max-width:1380px;margin:0 auto;padding:0 1.5rem;height:62px;display:flex;align-items:center;gap:2rem}
+    .hlogo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;text-decoration:none}
+    .hlogo span{color:var(--oro);font-style:italic}
+    .hnav{display:flex;align-items:center;gap:.2rem;flex:1}
+    .hnav a{color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;padding:.4rem .8rem;border-radius:2px;transition:color .2s}
+    .hnav a:hover{color:#fff}
+    .h-cta{display:flex;align-items:center;gap:.65rem}
+    .h-tel{color:rgba(255,255,255,.6);font-size:.78rem;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+    .h-tel:hover{color:#fff}
+    .h-tel svg{width:13px;height:13px}
+    .h-btn{background:var(--oro);color:var(--nero);padding:.38rem .85rem;border-radius:2px;font-size:.76rem;font-weight:500;text-decoration:none;letter-spacing:.04em}
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb{background:var(--nero);padding:.55rem 1.5rem;border-top:1px solid rgba(255,255,255,.06)}
+    .bc-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:rgba(255,255,255,.35)}
+    .bc-inner a{color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+    .bc-inner a:hover{color:var(--oro)}
+    .bc-inner svg{width:10px;height:10px;flex-shrink:0}
+    .bc-inner span{color:rgba(255,255,255,.6)}
+
+    /* ── GALLERY HERO ── */
+    .gallery-wrap{position:relative;background:var(--nero)}
+    .gallery-main{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer}
+    @media(max-width:768px){.gallery-main{aspect-ratio:4/3}}
+    .gallery-main img,.gm-ph{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .gm-ph{background:linear-gradient(135deg,#1a1a1a,#2a2520);display:flex;align-items:center;justify-content:center}
+    .gm-ph svg{width:60px;height:60px;opacity:.08}
+    .gallery-main:hover .gm-ph{transform:scale(1.02)}
+    .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 45%)}
+    .gallery-info{position:absolute;bottom:1.5rem;left:1.8rem;z-index:2}
+    .gi-badge-row{display:flex;gap:.4rem;margin-bottom:.6rem;flex-wrap:wrap}
+    .gi-badge{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:1px;font-weight:600}
+    .gb-vendita{background:var(--oro);color:var(--nero)}
+    .gb-evidenza{background:#fff;color:var(--nero)}
+    .gb-vt{background:var(--blu);color:#fff}
+    .gb-yt{background:var(--rosso);color:#fff}
+    .gi-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:#fff;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+    .gi-price small{font-family:'DM Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,.6);font-weight:300}
+    .gi-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.8);margin-top:.15rem}
+    .gallery-controls{position:absolute;bottom:1.5rem;right:1.8rem;z-index:2;display:flex;gap:.4rem}
+    .gc-btn{display:flex;align-items:center;gap:.35rem;padding:.42rem .85rem;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.2);border-radius:2px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.74rem;cursor:pointer;transition:background .2s,border-color .2s;backdrop-filter:blur(8px)}
+    .gc-btn:hover{background:rgba(201,168,76,.4);border-color:var(--oro)}
+    .gc-btn svg{width:13px;height:13px}
+    .gallery-thumbs{display:flex;gap:3px;height:100px;overflow:hidden}
+    @media(max-width:768px){.gallery-thumbs{display:none}}
+    .gt{flex:1;overflow:hidden;cursor:pointer;background:var(--gc);position:relative;transition:opacity .2s}
+    .gt:hover{opacity:.85}
+    .gt img,.gt-ph{width:100%;height:100%;object-fit:cover;display:block}
+    .gt-ph{background:linear-gradient(135deg,#2a2520,#1a1a1a)}
+    .gt-more{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600}
+    .gt-more small{font-size:.65rem;display:block;font-family:'DM Sans',sans-serif;font-weight:400;opacity:.7}
+
+    /* ── LAYOUT PRINCIPALE ── */
+    .page-inner{max-width:1380px;margin:0 auto;padding:1.6rem 1.5rem;display:grid;grid-template-columns:1fr 340px;gap:1.6rem;align-items:start}
+    @media(max-width:1100px){.page-inner{grid-template-columns:1fr}}
+
+    /* ── COLONNA SINISTRA ── */
+
+    /* NAV SEZIONI */
+    .section-nav{display:flex;gap:0;background:#fff;border:1px solid var(--gc);border-radius:3px;overflow-x:auto;margin-bottom:1.1rem;position:sticky;top:62px;z-index:40}
+    .section-nav::-webkit-scrollbar{display:none}
+    .sn-btn{padding:.65rem 1.1rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.74rem;letter-spacing:.04em;color:var(--grigio);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+    .sn-btn:hover{color:var(--nero)}
+    .sn-btn.active{color:var(--nero);border-bottom-color:var(--oro);font-weight:500}
+
+    /* SEZIONE BOX */
+    .s-box{background:#fff;border:1px solid var(--gc);border-radius:3px;overflow:hidden;margin-bottom:1rem}
+    .s-head{padding:.85rem 1.2rem;border-bottom:1px solid var(--gc);background:var(--bianco);display:flex;align-items:center;gap:.5rem}
+    .s-head h2{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
+    .s-head svg{width:14px;height:14px;color:var(--oro)}
+    .s-body{padding:1.2rem}
+
+    /* SPECS GRID */
+    .specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin-bottom:1.1rem}
+    @media(max-width:600px){.specs-grid{grid-template-columns:repeat(2,1fr)}}
+    .spec-item{background:var(--bianco);border:1px solid var(--gc);border-radius:2px;padding:.75rem .85rem;text-align:center}
+    .spec-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;line-height:1;color:var(--nero)}
+    .spec-lbl{font-size:.64rem;text-transform:uppercase;letter-spacing:.09em;color:var(--grigio);margin-top:.2rem}
+
+    /* CARATTERISTICHE TABLE */
+    .char-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .char-row{display:flex;justify-content:space-between;padding:.52rem 0;border-bottom:1px solid var(--gc);font-size:.84rem}
+    .char-row:last-child{border-bottom:none}
+    .char-row .lbl{color:var(--grigio)}
+    .char-row .val{font-weight:500;text-align:right}
+    .char-col{padding:0 .6rem}
+    .char-col:first-child{border-right:1px solid var(--gc);padding-left:0}
+    .char-col:last-child{padding-right:0}
+
+    /* COMFORT GRID */
+    .comfort-section{margin-top:.85rem}
+    .comfort-title{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grigio);font-weight:500;margin-bottom:.5rem}
+    .comfort-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+    .ctag{display:flex;align-items:center;gap:.28rem;padding:.28rem .65rem;background:var(--bianco);border:1px solid var(--gc);border-radius:20px;font-size:.76rem;color:var(--grigio)}
+    .ctag svg{width:11px;height:11px;color:var(--oro)}
+
+    /* DESCRIZIONE */
+    .desc-text{font-size:.88rem;line-height:1.95;color:var(--grigio);white-space:pre-line}
+    .desc-text strong{color:var(--nero);font-weight:500}
+
+    /* CLASSE EN */
+    .ce-bars{display:flex;flex-direction:column;gap:.2rem}
+    .ce-bar-row{display:flex;align-items:center;gap:.6rem}
+    .ce-bar-lbl{font-size:.7rem;font-weight:700;width:24px;flex-shrink:0;text-align:right}
+    .ce-bar{height:20px;border-radius:1px;display:flex;align-items:center;padding-left:.5rem;font-size:.66rem;font-weight:700;transition:width .5s}
+    .ce-bar-val{font-size:.66rem;color:var(--grigio);white-space:nowrap}
+    .ce-active-badge{background:var(--nero);color:#fff;font-size:.62rem;padding:.1rem .4rem;border-radius:1px;margin-left:auto}
+
+    /* PLANIMETRIA */
+    .plan-ph{background:var(--bianco);border:1px solid var(--gc);border-radius:2px;padding:3rem;text-align:center;color:var(--grigio)}
+    .plan-ph svg{width:40px;height:40px;opacity:.18;margin:0 auto .6rem;display:block}
+    .plan-ph p{font-size:.82rem}
+
+    /* YOUTUBE */
+    .yt-embed{width:100%;aspect-ratio:16/9;border-radius:2px;overflow:hidden;background:var(--nero)}
+    .yt-embed iframe{width:100%;height:100%;border:none}
+    .yt-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;color:rgba(255,255,255,.25);cursor:pointer}
+    .yt-ph svg{width:48px;height:48px}
+    .yt-ph p{font-size:.78rem}
+
+    /* VIRTUAL TOUR */
+    .vt-embed{width:100%;aspect-ratio:16/9;border-radius:2px;overflow:hidden;background:var(--gc);border:1px solid var(--gc)}
+    .vt-embed iframe{width:100%;height:100%;border:none}
+    .vt-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;color:var(--grigio)}
+    .vt-ph svg{width:40px;height:40px;opacity:.2}
+    .vt-ph p{font-size:.8rem}
+    .vt-platforms{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem;justify-content:center}
+    .vt-platforms span{font-size:.65rem;padding:.15rem .45rem;background:#fff;border:1px solid var(--gc);border-radius:1px;color:var(--grigio)}
+
+    /* MAPPA */
+    .map-embed{width:100%;height:340px;border-radius:2px;overflow:hidden;background:var(--gc);border:1px solid var(--gc);position:relative}
+    .map-embed iframe{width:100%;height:100%;border:none}
+    .map-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;color:var(--grigio)}
+    .map-ph svg{width:36px;height:36px;opacity:.2}
+    .map-note{font-size:.74rem;margin-top:.5rem;color:var(--grigio);display:flex;align-items:center;gap:.3rem}
+    .map-note svg{width:11px;height:11px;color:var(--oro)}
+
+    /* ALLEGATI */
+    .all-list{display:flex;flex-direction:column;gap:.35rem}
+    .all-item{display:flex;align-items:center;gap:.7rem;padding:.55rem .8rem;background:var(--bianco);border:1px solid var(--gc);border-radius:2px;text-decoration:none;color:inherit;transition:border-color .2s,background .2s}
+    .all-item:hover{border-color:var(--oro);background:#fff}
+    .all-icon{width:30px;height:30px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .all-icon.pdf{background:rgba(184,76,76,.1)}
+    .all-icon.pdf svg{color:var(--rosso)}
+    .all-icon svg{width:13px;height:13px}
+    .all-name{font-size:.81rem;font-weight:500}
+    .all-size{font-size:.7rem;color:var(--grigio);margin-left:auto}
+    .all-dl{font-size:.7rem;color:var(--oro)}
+
+    /* IMMOBILI SIMILI */
+    .simili-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+    @media(max-width:768px){.simili-grid{grid-template-columns:1fr}}
+    .sim-card{background:#fff;border:1px solid var(--gc);border-radius:3px;overflow:hidden;text-decoration:none;color:inherit;display:block;transition:transform .2s,box-shadow .2s}
+    .sim-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+    .sim-img{aspect-ratio:4/3;background:var(--gc);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .sim-img svg{width:24px;height:24px;opacity:.18}
+    .sim-body{padding:.75rem .9rem}
+    .sim-price{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600}
+    .sim-title{font-size:.8rem;margin:.2rem 0 .15rem;line-height:1.35}
+    .sim-loc{font-size:.72rem;color:var(--grigio);display:flex;align-items:center;gap:.25rem}
+    .sim-loc svg{width:10px;height:10px;color:var(--oro)}
+    .sim-specs{display:flex;gap:.55rem;font-size:.72rem;color:var(--grigio);margin-top:.45rem;padding-top:.45rem;border-top:1px solid var(--gc)}
+
+    /* ── SIDEBAR DESTRA ── */
+    .sidebar-right{display:flex;flex-direction:column;gap:.85rem}
+    .side-box{background:#fff;border:1px solid var(--gc);border-radius:3px;overflow:hidden}
+    .side-head{padding:.8rem 1.1rem;border-bottom:1px solid var(--gc);background:var(--bianco)}
+    .side-head h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600}
+    .side-head p{font-size:.72rem;color:var(--grigio);margin-top:.1rem}
+    .side-body{padding:1rem 1.1rem}
+
+    /* PREZZO BOX */
+    .price-main{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;line-height:1;margin-bottom:.3rem}
+    .price-sub{font-size:.75rem;color:var(--grigio);margin-bottom:.65rem}
+    .price-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--gc);font-size:.8rem}
+    .price-row:last-child{border-bottom:none}
+    .price-row span:last-child{font-weight:500}
+    .price-cta-row{display:flex;flex-direction:column;gap:.38rem;margin-top:.85rem}
+    .cta-primary{background:var(--nero);color:#fff;padding:.72rem 1rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.45rem;transition:background .2s}
+    .cta-primary:hover{background:var(--oro);color:var(--nero)}
+    .cta-primary svg{width:14px;height:14px}
+    .cta-secondary{background:var(--bianco);color:var(--nero);padding:.62rem 1rem;border:1px solid var(--gc);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.45rem;transition:background .2s,border-color .2s}
+    .cta-secondary:hover{border-color:var(--nero)}
+    .cta-secondary svg{width:13px;height:13px}
+
+    /* AGENTE */
+    .agent-wrap{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem}
+    .agent-av{width:46px;height:46px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--nero);flex-shrink:0}
+    .agent-name{font-weight:500;font-size:.88rem}
+    .agent-title{font-size:.72rem;color:var(--grigio)}
+    .agent-contacts{display:flex;flex-direction:column;gap:.35rem}
+    .agent-contact{display:flex;align-items:center;gap:.5rem;padding:.5rem .75rem;background:var(--bianco);border:1px solid var(--gc);border-radius:2px;text-decoration:none;color:var(--nero);font-size:.79rem;transition:border-color .2s,background .2s}
+    .agent-contact:hover{border-color:var(--oro);background:#fff}
+    .agent-contact svg{width:13px;height:13px;color:var(--oro);flex-shrink:0}
+
+    /* FORM CONTATTO */
+    .form-fields{display:flex;flex-direction:column;gap:.45rem}
+    .form-fields input,.form-fields textarea,.form-fields select{border:1px solid var(--gc);border-radius:2px;padding:.5rem .65rem;font-family:'DM Sans',sans-serif;font-size:.82rem;background:var(--bianco);color:var(--nero);width:100%;transition:border-color .2s}
+    .form-fields input:focus,.form-fields textarea:focus,.form-fields select:focus{outline:none;border-color:var(--oro);background:#fff}
+    .form-fields textarea{resize:vertical;min-height:76px;line-height:1.6}
+    .form-check{display:flex;align-items:flex-start;gap:.38rem;font-size:.71rem;color:var(--grigio)}
+    .form-check input{accent-color:var(--oro);flex-shrink:0;margin-top:.15rem}
+    .form-submit{background:var(--nero);color:#fff;padding:.65rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;width:100%;margin-top:.35rem;transition:background .2s}
+    .form-submit:hover{background:var(--oro);color:var(--nero)}
+
+    /* CONDIVIDI */
+    .share-row{display:flex;gap:.35rem}
+    .share-btn{flex:1;padding:.5rem;border:1px solid var(--gc);background:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:.35rem;font-family:'DM Sans',sans-serif;font-size:.72rem;cursor:pointer;color:var(--grigio);transition:border-color .2s,color .2s}
+    .share-btn:hover{border-color:var(--nero);color:var(--nero)}
+    .share-btn svg{width:13px;height:13px}
+    .fav-big{width:100%;padding:.5rem;border:1px solid var(--gc);background:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:.35rem;font-family:'DM Sans',sans-serif;font-size:.74rem;cursor:pointer;color:var(--grigio);margin-bottom:.38rem;transition:border-color .2s,background .2s}
+    .fav-big:hover,.fav-big.on{border-color:var(--rosso);color:var(--rosso)}
+    .fav-big svg{width:13px;height:13px}
+    .fav-big.on svg{fill:var(--rosso)}
+
+    /* RIF SIDEBAR */
+    .rif-box{background:var(--bianco);border:1px solid var(--gc);border-radius:2px;padding:.65rem .85rem;font-size:.75rem;color:var(--grigio)}
+    .rif-box strong{color:var(--nero)}
+
+    /* LIGHTBOX */
+    .lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+    .lb-overlay.open{opacity:1;pointer-events:all}
+    .lb-content{position:relative;max-width:1200px;width:100%;padding:1rem}
+    .lb-img{width:100%;max-height:85vh;object-fit:contain;display:block}
+    .lb-ph{width:100%;height:500px;background:linear-gradient(135deg,#1a1a1a,#2a2520);display:flex;align-items:center;justify-content:center}
+    .lb-ph svg{width:60px;height:60px;opacity:.06}
+    .lb-close{position:fixed;top:1.2rem;right:1.5rem;width:40px;height:40px;background:rgba(255,255,255,.12);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;z-index:10}
+    .lb-close:hover{background:rgba(255,255,255,.25)}
+    .lb-close svg{width:16px;height:16px}
+    .lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;background:rgba(255,255,255,.12);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;transition:background .2s}
+    .lb-prev{left:1.2rem}.lb-next{right:1.2rem}
+    .lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.25)}
+    .lb-prev svg,.lb-next svg{width:18px;height:18px}
+    .lb-counter{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.78rem;background:rgba(0,0,0,.5);padding:.3rem .8rem;border-radius:20px}
+    .lb-thumbs{position:fixed;bottom:3.2rem;left:50%;transform:translateX(-50%);display:flex;gap:.3rem;max-width:90vw;overflow-x:auto;padding:.3rem}
+    .lb-thumbs::-webkit-scrollbar{display:none}
+    .lb-thumb{width:44px;height:30px;border:2px solid transparent;border-radius:1px;overflow:hidden;cursor:pointer;flex-shrink:0;background:var(--gc);opacity:.5;transition:opacity .2s,border-color .2s}
+    .lb-thumb.active,.lb-thumb:hover{opacity:1;border-color:var(--oro)}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:1.6rem;right:1.6rem;background:var(--nero);color:#fff;padding:.7rem 1.2rem;border-radius:3px;font-size:.8rem;display:flex;align-items:center;gap:.45rem;z-index:9999;transform:translateY(80px);opacity:0;transition:transform .3s,opacity .3s}
+    .toast.show{transform:translateY(0);opacity:1}
+    .toast svg{width:13px;height:13px;color:var(--oro)}
+
+    /* FOOTER */
+    footer{background:var(--nero);color:rgba(255,255,255,.4);padding:2rem 1.5rem;margin-top:2rem}
+    .footer-inner{max-width:1380px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.76rem}
+    .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff}
+    .footer-logo span{color:var(--oro);font-style:italic}
+    .footer-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .footer-links a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--oro)}
+
+    @media(max-width:768px){
+      .gi-price{font-size:2rem}
+      .specs-grid{grid-template-columns:repeat(2,1fr)}
+      .char-grid{grid-template-columns:1fr}
+      .char-col:first-child{border-right:none;border-bottom:1px solid var(--gc);padding-bottom:.5rem}
+      .char-col:last-child{padding-top:.5rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="hlogo">Righetto <span>Immobiliare</span></a>
+    <nav class="hnav">
+      <a href="index.html">Home</a>
+      <a href="immobili.html">Immobili</a>
+      <a href="servizi.html">Servizi</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <div class="h-cta">
+      <a class="h-tel" href="tel:+390498843484"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18a2 2 0 011.99-2H5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>049 884 3484</a>
+      <a class="h-btn" href="contatti.html">Valutazione gratuita</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html">Home</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="immobili.html">Immobili</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="immobili.html?op=vendita">Vendita</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <span id="bc-comune">Curtarolo</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    <span id="bc-rif">Rif. LA0307</span>
+  </div>
+</div>
+
+<!-- GALLERY HERO -->
+<div class="gallery-wrap">
+  <div class="gallery-main" onclick="openLightbox(0)">
+    <div class="gm-ph">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="gallery-overlay"></div>
+    <div class="gallery-info">
+      <div class="gi-badge-row">
+        <span class="gi-badge gb-vendita">Vendita</span>
+        <span class="gi-badge gb-evidenza">★ In evidenza</span>
+        <span class="gi-badge gb-yt">▶ Video</span>
+        <span class="gi-badge gb-vt">● Tour 360°</span>
+      </div>
+      <div class="gi-price" id="hero-price">€ 380.000</div>
+      <div class="gi-title" id="hero-title">Villa singola a pochi chilometri da Padova</div>
+    </div>
+    <div class="gallery-controls">
+      <button class="gc-btn" onclick="event.stopPropagation();openLightbox(0)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span id="foto-count-hero">42 foto</span>
+      </button>
+    </div>
+  </div>
+  <div class="gallery-thumbs">
+    <div class="gt" onclick="openLightbox(1)"><div class="gt-ph"></div></div>
+    <div class="gt" onclick="openLightbox(2)"><div class="gt-ph"></div></div>
+    <div class="gt" onclick="openLightbox(3)"><div class="gt-ph"></div></div>
+    <div class="gt" onclick="openLightbox(4)">
+      <div class="gt-ph"></div>
+      <div class="gt-more">+38<small>altre foto</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page-inner">
+
+  <!-- ── COLONNA SINISTRA ── -->
+  <div>
+
+    <!-- NAV SEZIONI -->
+    <nav class="section-nav">
+      <button class="sn-btn active" onclick="scrollTo('s-info')">Informazioni</button>
+      <button class="sn-btn" onclick="scrollTo('s-desc')">Descrizione</button>
+      <button class="sn-btn" onclick="scrollTo('s-dettagli')">Dettagli</button>
+      <button class="sn-btn" onclick="scrollTo('s-energia')">Energia</button>
+      <button class="sn-btn" onclick="scrollTo('s-video')">Video</button>
+      <button class="sn-btn" onclick="scrollTo('s-tour')">Tour 360°</button>
+      <button class="sn-btn" onclick="scrollTo('s-planimetria')">Planimetria</button>
+      <button class="sn-btn" onclick="scrollTo('s-mappa')">Mappa</button>
+      <button class="sn-btn" onclick="scrollTo('s-simili')">Simili</button>
+    </nav>
+
+    <!-- INFO PRINCIPALI -->
+    <div class="s-box" id="s-info">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg><h2>Informazioni principali</h2></div>
+      <div class="s-body">
+        <div class="specs-grid">
+          <div class="spec-item"><div class="spec-val">350</div><div class="spec-lbl">mq superficie</div></div>
+          <div class="spec-item"><div class="spec-val">5</div><div class="spec-lbl">camere</div></div>
+          <div class="spec-item"><div class="spec-val">2</div><div class="spec-lbl">bagni</div></div>
+          <div class="spec-item"><div class="spec-val">1.083</div><div class="spec-lbl">€/mq</div></div>
+        </div>
+        <div class="char-grid">
+          <div class="char-col">
+            <div class="char-row"><span class="lbl">Tipo immobile</span><span class="val">Villa singola</span></div>
+            <div class="char-row"><span class="lbl">Operazione</span><span class="val">Vendita</span></div>
+            <div class="char-row"><span class="lbl">Comune</span><span class="val">Curtarolo (PD)</span></div>
+            <div class="char-row"><span class="lbl">Zona</span><span class="val">Via Dalmazia</span></div>
+            <div class="char-row"><span class="lbl">Piano</span><span class="val">Villa su 2 piani</span></div>
+            <div class="char-row"><span class="lbl">Anno costruzione</span><span class="val">1983</span></div>
+            <div class="char-row"><span class="lbl">Stato</span><span class="val">Ottimo</span></div>
+            <div class="char-row"><span class="lbl">Consegna</span><span class="val">Libero subito</span></div>
+          </div>
+          <div class="char-col">
+            <div class="char-row"><span class="lbl">Superficie</span><span class="val">350 mq</span></div>
+            <div class="char-row"><span class="lbl">Mq giardino</span><span class="val">1.000 mq</span></div>
+            <div class="char-row"><span class="lbl">Garage</span><span class="val">2 doppi</span></div>
+            <div class="char-row"><span class="lbl">Posto auto</span><span class="val">4</span></div>
+            <div class="char-row"><span class="lbl">Esposizione</span><span class="val">Est · Sud · Ovest</span></div>
+            <div class="char-row"><span class="lbl">Panorama</span><span class="val">Vista aperta</span></div>
+            <div class="char-row"><span class="lbl">Riferimento</span><span class="val">LA0307</span></div>
+            <div class="char-row"><span class="lbl">Agente</span><span class="val">Capon Gino</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESCRIZIONE -->
+    <div class="s-box" id="s-desc">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><h2>Descrizione</h2></div>
+      <div class="s-body">
+        <div class="desc-text" id="desc-text">Una casa dove i sogni prendono forma…
+
+<strong>Immaginati svegliato dal silenzio del verde</strong>, con 350 mq di spazio tutto tuo, un giardino privato di 1.000 mq e un porticato dove rilassarti nelle sere d'estate.
+
+Questa splendida villa singola sorge in una zona tranquilla e residenziale a soli pochi km dal centro di Padova. Distribuita su due livelli, offre:
+
+- 5 camere matrimoniali
+- 2 bagni completi (principale con vasca idromassaggio)
+- Ampio salone di oltre 50 mq con camino
+- Cucina abitabile con accesso diretto al porticato
+- Taverna/sala hobby al piano seminterrato
+- Soffitta con possibilità di mansarda
+- Lavanderia separata
+- Cantina
+
+<strong>All'esterno:</strong> giardino perimetrale recintato di circa 1.000 mq, porticato sul lato sud, garage doppio e ulteriori posti auto coperti.
+
+Impianto di riscaldamento autonomo con caldaia di recente sostituzione. Doppi vetri in tutta la proprietà.
+
+Un'opportunità rara per chi cerca la privacy di una villa singola senza rinunciare alla vicinanza ai servizi.</div>
+      </div>
+    </div>
+
+    <!-- DETTAGLI TECNICI -->
+    <div class="s-box" id="s-dettagli">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg><h2>Dettagli e comfort</h2></div>
+      <div class="s-body">
+        <div class="comfort-section">
+          <div class="comfort-title">Ambienti</div>
+          <div class="comfort-tags">
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Soggiorno</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Cucina abitabile</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Taverna</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Soffitta</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Cantina</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Lavanderia</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Giardino 1.000 mq</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20H3V9.5z"/></svg>Porticato</span>
+          </div>
+        </div>
+        <div class="comfort-section" style="margin-top:.85rem;">
+          <div class="comfort-title">Riscaldamento</div>
+          <div class="comfort-tags">
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Autonomo</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Camino</span>
+          </div>
+        </div>
+        <div class="comfort-section" style="margin-top:.85rem;">
+          <div class="comfort-title">Comfort e sicurezza</div>
+          <div class="comfort-tags">
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Porta blindata</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Allarme</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Canna fumaria</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Fibra ottica</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Garage 2 doppi</span>
+            <span class="ctag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Impianto a norma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLASSE ENERGETICA -->
+    <div class="s-box" id="s-energia">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><h2>Prestazione Energetica (APE)</h2></div>
+      <div class="s-body">
+        <div style="display:grid;grid-template-columns:1fr 180px;gap:1.4rem;align-items:center;">
+          <div class="ce-bars">
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">A4</span><div class="ce-bar" style="background:#1b5e20;width:30%;color:#fff;">A4</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">A3</span><div class="ce-bar" style="background:#2e7d32;width:37%;color:#fff;">A3</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">A2</span><div class="ce-bar" style="background:#388e3c;width:44%;color:#fff;">A2</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">A1</span><div class="ce-bar" style="background:#43a047;width:51%;color:#fff;">A1</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">B</span><div class="ce-bar" style="background:#558b2f;width:58%;color:#fff;">B</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#000;">C</span><div class="ce-bar" style="background:#f9a825;width:65%;color:#000;">C</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;font-size:.9rem;">D</span><div class="ce-bar" style="background:#ef6c00;width:100%;color:#fff;font-size:.75rem;font-weight:800;">◄ D — Immobile</div><span class="ce-bar-val" style="color:var(--nero);font-weight:600;">151,05 kWh/m²·anno</span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">E</span><div class="ce-bar" style="background:#e53935;width:79%;color:#fff;">E</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">F</span><div class="ce-bar" style="background:#b71c1c;width:86%;color:#fff;">F</div><span class="ce-bar-val"></span></div>
+            <div class="ce-bar-row"><span class="ce-bar-lbl" style="color:#fff;">G</span><div class="ce-bar" style="background:#880e4f;width:93%;color:#fff;">G</div><span class="ce-bar-val"></span></div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grigio);margin-bottom:.4rem;">Classe attuale</div>
+            <div style="width:80px;height:80px;background:#ef6c00;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:#fff;margin:0 auto .5rem;">D</div>
+            <div style="font-size:.76rem;color:var(--grigio);">151,05 kWh/m²·anno</div>
+            <div style="font-size:.66rem;color:var(--grigio);margin-top:.3rem;">Riscaldamento globale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO YOUTUBE -->
+    <div class="s-box" id="s-video">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg><h2>Video dell'immobile</h2></div>
+      <div class="s-body">
+        <div class="yt-embed" id="yt-box">
+          <div class="yt-ph" onclick="loadYT()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="rgba(255,255,255,.3)"/></svg>
+            <p>Clicca per caricare il video YouTube</p>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--grigio);margin-top:.55rem;display:flex;align-items:center;gap:.3rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Il video mostra gli interni, il giardino e i locali accessori della proprietà
+        </div>
+      </div>
+    </div>
+
+    <!-- VIRTUAL TOUR 360° -->
+    <div class="s-box" id="s-tour">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><h2>Virtual Tour 360°</h2></div>
+      <div class="s-body">
+        <div class="vt-embed" id="vt-box">
+          <div class="vt-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <p>Virtual Tour 360° non ancora disponibile per questo immobile</p>
+            <div class="vt-platforms">
+              <span>Matterport</span><span>Kuula</span><span>iStaging</span><span>My360</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:.72rem;color:var(--grigio);margin-top:.55rem;">
+          Compatibile con qualsiasi piattaforma di virtual tour. Ruota a 360° per visitare ogni stanza.
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANIMETRIA -->
+    <div class="s-box" id="s-planimetria">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><h2>Planimetria</h2></div>
+      <div class="s-body">
+        <div class="plan-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <p>Planimetria da caricare nel pannello admin</p>
+        </div>
+        <div class="all-list" style="margin-top:.75rem;">
+          <a href="#" class="all-item">
+            <div class="all-icon pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="all-name">Planimetria Piano Terra — LA0307.pdf</div>
+            <div class="all-size">245 KB</div>
+            <div class="all-dl">↓ Scarica</div>
+          </a>
+          <a href="#" class="all-item">
+            <div class="all-icon pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="all-name">Planimetria Piano Primo — LA0307.pdf</div>
+            <div class="all-size">198 KB</div>
+            <div class="all-dl">↓ Scarica</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAPPA -->
+    <div class="s-box" id="s-mappa">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg><h2>Posizione</h2></div>
+      <div class="s-body">
+        <div class="map-embed">
+          <!-- Sostituire con iframe Google Maps con le coordinate reali -->
+          <div class="map-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/></svg>
+            <p>Curtarolo (PD) — Via Dalmazia</p>
+            <p style="font-size:.72rem;opacity:.6;">Inserire iframe Google Maps con coordinate 45.4064, 11.8261</p>
+          </div>
+        </div>
+        <div class="map-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          La posizione indicata è approssimativa per tutelare la privacy del venditore. L'indirizzo esatto viene fornito su appuntamento.
+        </div>
+      </div>
+    </div>
+
+    <!-- IMMOBILI SIMILI -->
+    <div class="s-box" id="s-simili">
+      <div class="s-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg><h2>Immobili simili</h2></div>
+      <div class="s-body">
+        <div class="simili-grid">
+          <a class="sim-card" href="immobile.html?rif=LA0310">
+            <div class="sim-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div class="sim-body">
+              <div class="sim-price">€ 520.000</div>
+              <div class="sim-title">Villa bifamiliare con giardino privato</div>
+              <div class="sim-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Albignasego</div>
+              <div class="sim-specs"><span>180 mq</span><span>·</span><span>4 cam.</span><span>·</span><span>Rif. LA0310</span></div>
+            </div>
+          </a>
+          <a class="sim-card" href="immobile.html?rif=LA0312">
+            <div class="sim-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div class="sim-body">
+              <div class="sim-price">€ 680.000</div>
+              <div class="sim-title">Villa con piscina e parco — Limena</div>
+              <div class="sim-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Limena</div>
+              <div class="sim-specs"><span>290 mq</span><span>·</span><span>5 cam.</span><span>·</span><span>Rif. LA0312</span></div>
+            </div>
+          </a>
+          <a class="sim-card" href="immobile.html?rif=LA0308">
+            <div class="sim-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div class="sim-body">
+              <div class="sim-price">€ 285.000</div>
+              <div class="sim-title">Appartamento 3 locali — Centro Padova</div>
+              <div class="sim-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Padova</div>
+              <div class="sim-specs"><span>85 mq</span><span>·</span><span>3 cam.</span><span>·</span><span>Rif. LA0308</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── SIDEBAR DESTRA ── -->
+  <div class="sidebar-right">
+
+    <!-- PREZZO -->
+    <div class="side-box">
+      <div class="side-head">
+        <h3 id="sb-price">€ 380.000</h3>
+        <p>Villa singola in vendita a Curtarolo</p>
+      </div>
+      <div class="side-body">
+        <div class="price-row"><span>Prezzo</span><span>€ 380.000</span></div>
+        <div class="price-row"><span>€/mq</span><span>€ 1.083/mq</span></div>
+        <div class="price-row"><span>Spese cond.</span><span>Non applicabile</span></div>
+        <div class="price-row"><span>Classe energetica</span><span style="background:#ef6c00;color:#fff;padding:.1rem .38rem;border-radius:1px;font-size:.72rem;font-weight:700;">D</span></div>
+        <div class="price-cta-row">
+          <button class="cta-primary" onclick="scrollToForm()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18a2 2 0 011.99-2H5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            Richiedi informazioni
+          </button>
+          <button class="cta-secondary" onclick="prenotaVisita()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Prenota visita
+          </button>
+          <button class="cta-secondary" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Stampa / Brochure
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENTE -->
+    <div class="side-box">
+      <div class="side-head"><h3>Il tuo agente</h3></div>
+      <div class="side-body">
+        <div class="agent-wrap">
+          <div class="agent-av">G</div>
+          <div>
+            <div class="agent-name">Capon Gino</div>
+            <div class="agent-title">Titolare — Righetto Immobiliare</div>
+          </div>
+        </div>
+        <div class="agent-contacts">
+          <a href="tel:+393488621888" class="agent-contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18a2 2 0 011.99-2H5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            348 862 1888 (cell.)
+          </a>
+          <a href="tel:+390498843484" class="agent-contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18a2 2 0 011.99-2H5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            049 884 3484 (ufficio)
+          </a>
+          <a href="/cdn-cgi/l/email-protection#d7b0beb9b897a5beb0bfb2a3a3b8bebabab8b5bebbbeb6a5b2f9bea3" class="agent-contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span class="__cf_email__" data-cfemail="accbc5c2c3ecdec5cbc4c9d8d8c3c5c1c1c3cec5c0c5cddec982c5d8">[email&#160;protected]</span>
+          </a>
+          <a href="https://wa.me/393488621888?text=Ciao,%20mi%20interessa%20l'immobile%20LA0307" class="agent-contact" target="_blank" style="background:#25d366;border-color:#25d366;color:#fff;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Scrivi su WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM CONTATTO -->
+    <div class="side-box" id="s-contatto">
+      <div class="side-head">
+        <h3>Richiedi informazioni</h3>
+        <p>Ti risponderemo entro 24 ore — Rif. LA0307</p>
+      </div>
+      <div class="side-body">
+        <div class="form-fields">
+          <input type="text" placeholder="Nome e cognome *" id="f-nome">
+          <input type="tel" placeholder="Telefono *" id="f-tel">
+          <input type="email" placeholder="Email">
+          <select id="f-interesse">
+            <option value="">Tipo di richiesta</option>
+            <option>Voglio fissare una visita</option>
+            <option>Voglio maggiori informazioni</option>
+            <option>Voglio fare una proposta</option>
+            <option>Voglio una valutazione</option>
+          </select>
+          <textarea placeholder="Messaggio (orari preferiti per la visita, domande...)&#10;&#10;Es: Buongiorno, sono interessato a visitare l'immobile nel weekend..." id="f-msg"></textarea>
+          <label class="form-check">
+            <input type="checkbox" id="f-gdpr">
+            Acconsento al trattamento dei dati personali ai sensi del GDPR (D.Lgs. 196/2003 e GDPR 2016/679)
+          </label>
+          <button class="form-submit" onclick="sendForm()">Invia richiesta</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONDIVIDI & PREFERITI -->
+    <div class="side-box">
+      <div class="side-body">
+        <button class="fav-big" id="fav-btn" onclick="toggleFav()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Aggiungi ai preferiti
+        </button>
+        <div class="share-row">
+          <button class="share-btn" onclick="shareLink()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Condividi</button>
+          <button class="share-btn" onclick="copyLink()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copia link</button>
+          <button class="share-btn" onclick="printPage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Stampa</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIF BOX -->
+    <div class="rif-box">
+      <strong>Rif. LA0307</strong> · Villa singola · Curtarolo (PD)<br>
+      Inserito il 15/01/2025 · Aggiornato il 19/02/2025
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb" onclick="if(event.target===this)closeLB()">
+  <div class="lb-content">
+    <div class="lb-ph" id="lb-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+  </div>
+  <button class="lb-close" onclick="closeLB()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <button class="lb-prev" onclick="lbNav(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="lb-next" onclick="lbNav(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  <div class="lb-counter" id="lb-counter">1 / 42</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span id="toast-msg"></span></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Righetto <span>Immobiliare</span></div>
+      <div style="margin-top:.4rem;">Via Roma, 96 — Limena (PD) · Tel: 049 884 3484</div>
+    </div>
+    <div class="footer-links">
+      <a href="immobili.html">Immobili</a>
+      <a href="servizi.html">Servizi</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="blog.html">Blog</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div>© 2025 Gruppo Immobiliare Righetto di Capon Gino</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── LIGHTBOX ──
+  let lbIdx = 0;
+  const lbTotal = 42;
+
+  function openLightbox(n) {
+    lbIdx = n;
+    document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + lbTotal;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLB() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lbNav(d) {
+    lbIdx = (lbIdx + d + lbTotal) % lbTotal;
+    document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + lbTotal;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') lbNav(1);
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'Escape') closeLB();
+  });
+
+  // ── YOUTUBE ──
+  function loadYT() {
+    const ytId = 'dQw4w9WgXcQ'; // sostituire con ID reale
+    document.getElementById('yt-box').innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>`;
+  }
+
+  // ── SECTION NAV ──
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('.sn-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // ── FORM ──
+  function scrollToForm() {
+    document.getElementById('s-contatto').scrollIntoView({behavior:'smooth'});
+    setTimeout(() => document.getElementById('f-nome').focus(), 500);
+  }
+  function prenotaVisita() {
+    document.getElementById('f-interesse').value = 'Voglio fissare una visita';
+    scrollToForm();
+  }
+  function sendForm() {
+    const nome = document.getElementById('f-nome').value.trim();
+    const tel = document.getElementById('f-tel').value.trim();
+    const gdpr = document.getElementById('f-gdpr').checked;
+    if (!nome || !tel) { toast('Inserisci nome e telefono'); return; }
+    if (!gdpr) { toast('Accetta il trattamento dei dati'); return; }
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '✓ Richiesta inviata!';
+    btn.style.background = 'var(--verde)';
+    btn.disabled = true;
+    toast('Richiesta inviata! Ti contatteremo presto.');
+  }
+
+  // ── PREFERITI ──
+  function toggleFav() {
+    const btn = document.getElementById('fav-btn');
+    btn.classList.toggle('on');
+    if (btn.classList.contains('on')) {
+      btn.innerHTML = btn.innerHTML.replace('Aggiungi ai preferiti','✓ Salvato nei preferiti');
+      toast('Aggiunto ai preferiti!');
+    } else {
+      btn.innerHTML = btn.innerHTML.replace('✓ Salvato nei preferiti','Aggiungi ai preferiti');
+    }
+  }
+
+  // ── CONDIVIDI ──
+  function shareLink() {
+    if (navigator.share) {
+      navigator.share({title:'Villa singola Curtarolo — Righetto Immobiliare', url: window.location.href});
+    } else { copyLink(); }
+  }
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => toast('Link copiato!'));
+  }
+  function printPage() { window.print(); }
+
+  // ── SCROLL SPY ──
+  const sections = ['s-info','s-desc','s-dettagli','s-energia','s-video','s-tour','s-planimetria','s-mappa','s-simili'];
+  const navBtns = document.querySelectorAll('.sn-btn');
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((id,i) => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 140) current = i;
+    });
+    navBtns.forEach((b,i) => b.classList.toggle('active', i === current));
+  });
+
+  // ── T
