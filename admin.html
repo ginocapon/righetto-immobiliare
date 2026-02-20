@@ -603,6 +603,157 @@ tr:hover td { background: rgba(206,224,143,0.06); }
 .toast.error { background: var(--rosso); }
 @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
+
+/* ══════════ UPLOAD ZONES ══════════ */
+.upload-zone {
+  border: 2px dashed var(--caffe3);
+  border-radius: 12px;
+  padding: 32px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--sfondo);
+  margin-bottom: 12px;
+}
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color: var(--nero);
+  background: var(--oro2);
+}
+.upload-icon { font-size: 2rem; margin-bottom: 8px; }
+.upload-label { font-size: 0.88rem; font-weight: 600; color: var(--testo); margin-bottom: 4px; }
+.upload-hint { font-size: 0.72rem; color: var(--caffe2); }
+
+.upload-progress {
+  background: var(--sfondo);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--caffe3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--nero);
+  border-radius: 3px;
+  transition: width 0.3s;
+  width: 0%;
+}
+.upload-progress span { font-size: 0.75rem; color: var(--caffe2); white-space: nowrap; }
+
+/* FOTO GRID */
+.foto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.foto-thumb {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--caffe3);
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.foto-thumb:hover { border-color: var(--nero); }
+.foto-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.foto-thumb .foto-del {
+  position: absolute;
+  top: 4px; right: 4px;
+  background: rgba(231,76,60,0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px; height: 22px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.foto-thumb:hover .foto-del { display: flex; }
+.foto-thumb .foto-badge {
+  position: absolute;
+  bottom: 4px; left: 4px;
+  background: rgba(58,85,120,0.85);
+  color: white;
+  font-size: 0.6rem;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+/* DOCUMENTI LIST */
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--sfondo);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--caffe3);
+}
+.doc-icon { font-size: 1.5rem; flex-shrink: 0; }
+.doc-info { flex: 1; min-width: 0; }
+.doc-name { font-size: 0.82rem; font-weight: 600; color: var(--testo); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.doc-meta { font-size: 0.68rem; color: var(--caffe2); }
+.doc-actions { display: flex; gap: 6px; }
+.doc-actions a { color: var(--nero); font-size: 0.75rem; text-decoration: none; }
+.doc-actions a:hover { color: var(--caffe); }
+.doc-del { background: none; border: none; cursor: pointer; color: var(--rosso); font-size: 0.9rem; }
+
+/* VT SCENES */
+.vt-scene-card {
+  background: var(--sfondo);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--caffe3);
+}
+.vt-scene-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.vt-scene-num {
+  background: var(--nero);
+  color: white;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600; flex-shrink: 0;
+}
+.vt-scene-name {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1.5px solid var(--caffe3);
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+}
+.vt-scene-preview {
+  width: 100%; max-height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 8px;
+  border: 2px solid var(--oro);
+}
+
+
 /* SEZIONI */
 .section { display: none; }
 .section.active { display: block; }
@@ -860,60 +1011,272 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                   </select>
                 </div>
 
-                <div class="section-divider">Dotazioni</div>
+                <!-- ═══ AMBIENTI ═══ -->
+                <div class="section-divider">🏠 Ambienti</div>
+                <div class="checks-grid">
+                  <label class="check-item"><input type="checkbox" id="f_soggiorno"> 🛋️ Soggiorno</label>
+                  <label class="check-item"><input type="checkbox" id="f_cucina"> 🍳 Cucina</label>
+                  <label class="check-item"><input type="checkbox" id="f_mansarda"> 🏠 Mansarda</label>
+                  <label class="check-item"><input type="checkbox" id="f_taverna"> 🍷 Taverna</label>
+                  <label class="check-item"><input type="checkbox" id="f_soffitta"> 📦 Soffitta</label>
+                  <label class="check-item"><input type="checkbox" id="f_lavanderia"> 🧺 Lavanderia</label>
+                  <label class="check-item"><input type="checkbox" id="f_cantina"> 📦 Cantina</label>
+                  <label class="check-item"><input type="checkbox" id="f_porticato"> ⛩️ Porticato</label>
+                  <label class="check-item"><input type="checkbox" id="f_soppalco"> 📐 Soppalco</label>
+                  <label class="check-item"><input type="checkbox" id="f_giardino_condominiale"> 🌳 Giardino condominiale</label>
+                </div>
+                <div class="form-grid" style="margin-top:12px">
+                  <div class="form-group">
+                    <label>N° Camere</label>
+                    <input type="number" id="f_camere" min="0" placeholder="es. 3">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Bagni</label>
+                    <input type="number" id="f_bagni_totali" min="0" placeholder="es. 2">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Terrazzi</label>
+                    <input type="number" id="f_terrazzi_num" min="0" placeholder="es. 1">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Ripostigli</label>
+                    <input type="number" id="f_ripostigli" min="0" placeholder="es. 1">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Garage</label>
+                    <input type="number" id="f_garage_num" min="0" placeholder="es. 1">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Garage Doppio</label>
+                    <input type="number" id="f_garage_doppio" min="0" placeholder="es. 0">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Posto Auto</label>
+                    <input type="number" id="f_posto_auto" min="0" placeholder="es. 0">
+                  </div>
+                  <div class="form-group">
+                    <label>MQ Giardino</label>
+                    <input type="number" id="f_mq_giardino" min="0" placeholder="es. 200">
+                  </div>
+                  <div class="form-group">
+                    <label>MQ Superficie Lotto</label>
+                    <input type="number" id="f_mq_lotto" min="0" placeholder="es. 500">
+                  </div>
+                  <div class="form-group">
+                    <label>Esposizione</label>
+                    <select id="f_esposizione">
+                      <option value="">Non specificata</option>
+                      <option value="N">Nord</option>
+                      <option value="S">Sud</option>
+                      <option value="E">Est</option>
+                      <option value="O">Ovest</option>
+                      <option value="NE">Nord-Est</option>
+                      <option value="NO">Nord-Ovest</option>
+                      <option value="SE">Sud-Est</option>
+                      <option value="SO">Sud-Ovest</option>
+                    </select>
+                  </div>
+                </div>
 
+                <!-- ═══ LIVELLI ═══ -->
+                <div class="section-divider">📐 Livelli</div>
+                <div class="checks-grid">
+                  <label class="check-item"><input type="checkbox" id="f_piano_interrato"> Piano Interrato</label>
+                  <label class="check-item"><input type="checkbox" id="f_piano_terra"> Piano Terra</label>
+                  <label class="check-item"><input type="checkbox" id="f_primo_piano"> Primo Piano</label>
+                </div>
+
+                <!-- ═══ COMFORT ═══ -->
+                <div class="section-divider">✨ Comfort</div>
                 <div class="checks-grid">
                   <label class="check-item"><input type="checkbox" id="f_garage"> 🚗 Garage</label>
                   <label class="check-item"><input type="checkbox" id="f_giardino"> 🌿 Giardino</label>
-                  <label class="check-item"><input type="checkbox" id="f_terrazzo"> ☀️ Terrazzo</label>
-                  <label class="check-item"><input type="checkbox" id="f_cantina"> 📦 Cantina</label>
+                  <label class="check-item"><input type="checkbox" id="f_terrazzo"> ☀️ Terrazzo/Balcone</label>
                   <label class="check-item"><input type="checkbox" id="f_ascensore"> 🛗 Ascensore</label>
                   <label class="check-item"><input type="checkbox" id="f_piscina"> 🏊 Piscina</label>
                   <label class="check-item"><input type="checkbox" id="f_arredato"> 🛋️ Arredato</label>
+                  <label class="check-item"><input type="checkbox" id="f_ingresso_indipendente"> 🚪 Ingresso Indipendente</label>
+                  <label class="check-item"><input type="checkbox" id="f_canna_fumaria"> 🔥 Canna Fumaria</label>
+                  <label class="check-item"><input type="checkbox" id="f_animali_ammessi"> 🐾 Animali Ammessi</label>
+                  <label class="check-item"><input type="checkbox" id="f_annuncio_prestigio"> ⭐ Annuncio Prestigio</label>
+                  <label class="check-item"><input type="checkbox" id="f_chiavi_agenzia"> 🔑 Chiavi in Agenzia</label>
+                  <label class="check-item"><input type="checkbox" id="f_immobile_garantito"> ✅ Immobile Garantito</label>
+                </div>
+                <div class="form-grid" style="margin-top:12px">
+                  <div class="form-group">
+                    <label>N° Accessi Carrai</label>
+                    <input type="number" id="f_num_accessi_carrai" min="0" placeholder="es. 1">
+                  </div>
+                  <div class="form-group">
+                    <label>N° Portoni</label>
+                    <input type="number" id="f_num_portoni" min="0" placeholder="es. 1">
+                  </div>
+                  <div class="form-group">
+                    <label>Impianto Elettrico</label>
+                    <select id="f_impianto_elettrico">
+                      <option value="">Non specificato</option>
+                      <option value="a norma">A Norma</option>
+                      <option value="da adeguare">Da Adeguare</option>
+                      <option value="non presente">Non Presente</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Panorama</label>
+                    <select id="f_panorama">
+                      <option value="">Non specificato</option>
+                      <option value="vista aperta">Vista Aperta</option>
+                      <option value="vista mare">Vista Mare</option>
+                      <option value="vista monti">Vista Monti</option>
+                      <option value="vista città">Vista Città</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Consegna</label>
+                    <select id="f_consegna">
+                      <option value="">Non specificata</option>
+                      <option value="LIBERA">Libera</option>
+                      <option value="OCCUPATA">Occupata</option>
+                      <option value="DA DEFINIRE">Da Definire</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Spese Condominio (€/mese)</label>
+                    <input type="number" id="f_spese_condominio" min="0" placeholder="es. 80">
+                  </div>
                 </div>
 
-                <div class="section-divider">Foto & Media</div>
+                <!-- ═══ RISCALDAMENTO ═══ -->
+                <div class="section-divider">🔥 Riscaldamento</div>
+                <div class="checks-grid">
+                  <label class="check-item"><input type="checkbox" id="f_riscaldamento_autonomo"> Autonomo</label>
+                  <label class="check-item"><input type="checkbox" id="f_riscaldamento_centralizzato"> Centralizzato</label>
+                  <label class="check-item"><input type="checkbox" id="f_aria_condizionata"> ❄️ Aria Condizionata</label>
+                </div>
 
+                <!-- ═══ CATASTO ═══ -->
+                <div class="section-divider">📋 Dati Catastali</div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Rendita Catastale (€)</label>
+                    <input type="number" id="f_rendita_catastale" step="0.01" placeholder="es. 1638.98">
+                  </div>
+                  <div class="form-group">
+                    <label>Valore Catastale (€)</label>
+                    <input type="number" id="f_valore_catastale" step="0.01" placeholder="es. 189302.19">
+                  </div>
+                  <div class="form-group">
+                    <label>Prezzo Reale (€)</label>
+                    <input type="number" id="f_prezzo_reale" placeholder="es. 380000">
+                  </div>
+                  <div class="form-group form-full">
+                    <label>Note Catastali (fogli/mappali/subalterni)</label>
+                    <input type="text" id="f_note_catastali" placeholder="es. Foglio 11 Mappale 538 Sub 2 - A7">
+                  </div>
+                </div>
+
+                <!-- ═══ FOTO ═══ -->
+                <div class="section-divider">📸 Foto Immobile</div>
                 <div class="form-group form-full">
-                  <label>Aggiungi URL Foto</label>
-                  <div class="url-input-row">
-                    <input type="url" id="fotoUrlInput" placeholder="https://... (URL immagine)">
-                    <button type="button" class="btn btn-secondary btn-sm" onclick="addFoto()">+ Aggiungi</button>
+                  <div class="upload-zone" id="dropZoneFoto" onclick="document.getElementById('inputFoto').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event,'dropZoneFoto')" ondrop="onDrop(event,'foto')">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-label">Clicca o trascina qui le foto</div>
+                    <div class="upload-hint">JPG · PNG · WEBP · HEIC — max 10MB per foto</div>
+                    <input type="file" id="inputFoto" multiple accept="image/*,.heic" style="display:none" onchange="handleFiles(this.files,'foto')">
+                  </div>
+                  <div class="upload-progress" id="progressFoto" style="display:none">
+                    <div class="progress-bar"><div class="progress-fill" id="progressFotoFill"></div></div>
+                    <span id="progressFotoText">Caricamento...</span>
                   </div>
                   <div class="foto-list" id="fotoList"></div>
+                  <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--caffe3)">
+                    <label style="font-size:0.75rem;color:var(--caffe2)">oppure aggiungi URL diretto:</label>
+                    <div class="url-input-row" style="margin-top:4px">
+                      <input type="url" id="fotoUrlInput" placeholder="https://... (URL immagine)">
+                      <button type="button" class="btn btn-secondary btn-sm" onclick="addFotoUrl()">+ URL</button>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="form-group">
-                  <label>YouTube Video ID</label>
-                  <input type="text" id="f_youtube_id" placeholder="es. dQw4w9WgXcQ">
-                </div>
-                <div class="form-group">
-                  <label>Virtual Tour URL (iframe)</label>
-                  <input type="url" id="f_virtual_tour" placeholder="https://...">
-                </div>
-                <div class="form-group">
-                  <label>Planimetria URL</label>
-                  <input type="url" id="f_planimetria" placeholder="https://...">
+                <!-- ═══ PLANIMETRIE ═══ -->
+                <div class="section-divider">📐 Planimetrie</div>
+                <div class="form-group form-full">
+                  <div class="upload-zone" id="dropZonePlan" onclick="document.getElementById('inputPlan').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event,'dropZonePlan')" ondrop="onDrop(event,'planimetrie')">
+                    <div class="upload-icon">📐</div>
+                    <div class="upload-label">Clicca o trascina le planimetrie</div>
+                    <div class="upload-hint">JPG · PNG · PDF — max 10MB per file</div>
+                    <input type="file" id="inputPlan" multiple accept="image/*,.pdf" style="display:none" onchange="handleFiles(this.files,'planimetrie')">
+                  </div>
+                  <div class="upload-progress" id="progressPlan" style="display:none">
+                    <div class="progress-bar"><div class="progress-fill" id="progressPlanFill"></div></div>
+                    <span id="progressPlanText">Caricamento...</span>
+                  </div>
+                  <div class="foto-list" id="planimetrieList"></div>
                 </div>
 
-                <div class="section-divider">Stato Pubblicazione</div>
+                <!-- ═══ DOCUMENTI PDF ═══ -->
+                <div class="section-divider">📄 Documenti (PDF · Word · DXF)</div>
+                <div class="form-group form-full">
+                  <div class="upload-zone" id="dropZoneDoc" onclick="document.getElementById('inputDoc').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event,'dropZoneDoc')" ondrop="onDrop(event,'documenti')">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-label">Clicca o trascina i documenti</div>
+                    <div class="upload-hint">PDF · DOC · DOCX · DXF · XLS — max 20MB per file</div>
+                    <input type="file" id="inputDoc" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.dxf,.dwg,.zip,.ppt,.pptx" style="display:none" onchange="handleFiles(this.files,'documenti')">
+                  </div>
+                  <div class="upload-progress" id="progressDoc" style="display:none">
+                    <div class="progress-bar"><div class="progress-fill" id="progressDocFill"></div></div>
+                    <span id="progressDocText">Caricamento...</span>
+                  </div>
+                  <div id="documentiList"></div>
+                </div>
 
+                <!-- ═══ VIDEO & VIRTUAL TOUR ═══ -->
+                <div class="section-divider">🎬 Video & Virtual Tour</div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>YouTube Video ID</label>
+                    <input type="text" id="f_youtube_id" placeholder="es. H93UW4SX8zQ">
+                    <small style="color:var(--caffe2);font-size:0.72rem">Dall'URL youtube.com/watch?v=<strong>QUESTO</strong></small>
+                  </div>
+                  <div class="form-group">
+                    <label>Virtual Tour Esterno (iframe URL)</label>
+                    <input type="url" id="f_virtual_tour" placeholder="es. https://kuula.co/share/...">
+                    <small style="color:var(--caffe2);font-size:0.72rem">URL embed da Kuula, Matterport, ecc.</small>
+                  </div>
+                </div>
+
+                <!-- ═══ VIRTUAL TOUR 360° PANNELLUM ═══ -->
+                <div class="section-divider">🌐 Virtual Tour 360° (Pannellum)</div>
+                <div class="form-group form-full">
+                  <label style="margin-bottom:8px;display:block">Stanze del Tour — aggiungi foto 360° equirettangolari per ogni stanza</label>
+                  <div id="vtScenesList"></div>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="addVtScene()" style="margin-top:8px">
+                    + Aggiungi Stanza 360°
+                  </button>
+                  <small style="color:var(--caffe2);font-size:0.72rem;display:block;margin-top:6px">
+                    ⚠️ Usa foto 360° equirettangolari (2:1 ratio). Carica su ImgBB o Google Drive e incolla l'URL diretto.
+                  </small>
+                </div>
+
+                <!-- ═══ PUBBLICAZIONE ═══ -->
+                <div class="section-divider">📢 Stato Pubblicazione</div>
                 <div class="checks-grid">
-                  <label class="check-item"><input type="checkbox" id="f_attivo" checked> ✅ Attivo (visibile)</label>
-                  <label class="check-item"><input type="checkbox" id="f_in_evidenza"> ⭐ In Evidenza</label>
+                  <label class="check-item"><input type="checkbox" id="f_attivo" checked> ✅ Attivo (visibile sul sito)</label>
+                  <label class="check-item"><input type="checkbox" id="f_in_evidenza"> ⭐ In Evidenza (homepage)</label>
                   <label class="check-item"><input type="checkbox" id="f_venduto"> 🔴 Venduto</label>
                   <label class="check-item"><input type="checkbox" id="f_affittato"> 🔴 Affittato</label>
                 </div>
 
-                <div class="section-divider">Note Interne</div>
-
-                <div class="form-group">
-                  <label>ID Idealista</label>
-                  <input type="text" id="f_id_idealista" placeholder="ID annuncio su Idealista">
-                </div>
-                <div class="form-group form-full">
-                  <label>Note Interne</label>
-                  <textarea id="f_note_interne" placeholder="Note private, appunti, promemoria..."></textarea>
+                <!-- ═══ NOTE INTERNE ═══ -->
+                <div class="section-divider">📝 Note Interne</div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>ID Idealista</label>
+                    <input type="text" id="f_id_idealista" placeholder="ID annuncio su Idealista">
+                  </div>
+                  <div class="form-group form-full">
+                    <label>Note Interne (non visibili sul sito)</label>
+                    <textarea id="f_note_interne" placeholder="Note private, appunti, promemoria, storia del cliente..."></textarea>
+                  </div>
                 </div>
 
               </div><!-- /form-grid -->
@@ -997,6 +1360,9 @@ const URL_KEY = 'RIG2024';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let currentFotos = [];
+let currentPlanimetrie = [];
+let currentDocumenti = [];
+let currentVtScenes = [];
 let allImmobili = [];
 
 // ══════════════════════════════════════
@@ -1181,8 +1547,8 @@ function resetForm() {
   document.getElementById('editId').value = '';
   document.getElementById('formTitle').textContent = 'Nuovo Immobile';
   document.getElementById('f_attivo').checked = true;
-  currentFotos = [];
-  renderFotos();
+  currentFotos = []; currentPlanimetrie = []; currentDocumenti = []; currentVtScenes = [];
+  renderFotos(); renderPlanimetrie(); renderDocumenti(); renderVtScenes();
   showSection('nuovo');
 }
 
@@ -1193,21 +1559,37 @@ function editImmobile(imm) {
   const fields = ['codice','titolo','tipo_operazione','categoria','tipologia','prezzo',
     'comune','indirizzo','lat','lng','superficie','locali','bagni','piano',
     'anno_costruzione','stato','classe_energetica','youtube_id','virtual_tour',
-    'planimetria','id_idealista','note_interne'];
+    'id_idealista','note_interne',
+    'camere','bagni_totali','terrazzi_num','ripostigli','garage_num','garage_doppio',
+    'posto_auto','mq_giardino','mq_lotto','esposizione',
+    'impianto_elettrico','panorama','consegna','spese_condominio',
+    'rendita_catastale','valore_catastale','prezzo_reale'];
 
   fields.forEach(f => {
     const el = document.getElementById('f_' + f);
     if (el) el.value = imm[f] !== null && imm[f] !== undefined ? imm[f] : '';
   });
 
-  const bools = ['garage','giardino','terrazzo','cantina','ascensore','piscina','arredato','attivo','in_evidenza','venduto','affittato'];
+  const bools = ['garage','giardino','terrazzo','cantina','ascensore','piscina','arredato',
+    'attivo','in_evidenza','venduto','affittato',
+    'soggiorno','cucina','mansarda','taverna','soffitta','lavanderia','porticato','soppalco',
+    'giardino_condominiale','piano_interrato','piano_terra','primo_piano',
+    'ingresso_indipendente','canna_fumaria','animali_ammessi','annuncio_prestigio',
+    'chiavi_agenzia','immobile_garantito','riscaldamento_autonomo',
+    'riscaldamento_centralizzato','aria_condizionata'];
   bools.forEach(f => {
     const el = document.getElementById('f_' + f);
     if (el) el.checked = !!imm[f];
   });
 
   currentFotos = Array.isArray(imm.foto) ? [...imm.foto] : [];
+  currentPlanimetrie = Array.isArray(imm.planimetrie) ? [...imm.planimetrie] : [];
+  currentDocumenti = Array.isArray(imm.documenti) ? [...imm.documenti] : [];
+  currentVtScenes = Array.isArray(imm.virtual_tour_scenes) ? [...imm.virtual_tour_scenes] : [];
   renderFotos();
+  renderPlanimetrie();
+  renderDocumenti();
+  renderVtScenes();
 
   // Switch to form section
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -1254,9 +1636,64 @@ async function saveImmobile(e) {
     piscina: document.getElementById('f_piscina').checked,
     arredato: document.getElementById('f_arredato').checked,
     foto: currentFotos,
+    planimetrie: currentPlanimetrie,
+    documenti: currentDocumenti,
+    virtual_tour_scenes: currentVtScenes,
     youtube_id: document.getElementById('f_youtube_id').value || null,
     virtual_tour: document.getElementById('f_virtual_tour').value || null,
-    planimetria: document.getElementById('f_planimetria').value || null,
+    // Ambienti
+    soggiorno: document.getElementById('f_soggiorno').checked,
+    cucina: document.getElementById('f_cucina').checked,
+    camere: parseInt(document.getElementById('f_camere').value)||null,
+    bagni_totali: parseInt(document.getElementById('f_bagni_totali').value)||null,
+    mansarda: document.getElementById('f_mansarda').checked,
+    taverna: document.getElementById('f_taverna').checked,
+    soffitta: document.getElementById('f_soffitta').checked,
+    lavanderia: document.getElementById('f_lavanderia').checked,
+    porticato: document.getElementById('f_porticato').checked,
+    soppalco: document.getElementById('f_soppalco').checked,
+    giardino_condominiale: document.getElementById('f_giardino_condominiale').checked,
+    terrazzi_num: parseInt(document.getElementById('f_terrazzi_num').value)||null,
+    ripostigli: parseInt(document.getElementById('f_ripostigli').value)||null,
+    garage_num: parseInt(document.getElementById('f_garage_num').value)||null,
+    garage_doppio: parseInt(document.getElementById('f_garage_doppio').value)||null,
+    posto_auto: parseInt(document.getElementById('f_posto_auto').value)||null,
+    mq_giardino: parseFloat(document.getElementById('f_mq_giardino').value)||null,
+    mq_lotto: parseFloat(document.getElementById('f_mq_lotto').value)||null,
+    esposizione: document.getElementById('f_esposizione').value||null,
+    // Livelli
+    piano_interrato: document.getElementById('f_piano_interrato').checked,
+    piano_terra: document.getElementById('f_piano_terra').checked,
+    primo_piano: document.getElementById('f_primo_piano').checked,
+    // Comfort
+    garage: document.getElementById('f_garage').checked,
+    giardino: document.getElementById('f_giardino').checked,
+    terrazzo: document.getElementById('f_terrazzo').checked,
+    cantina: document.getElementById('f_cantina').checked,
+    ascensore: document.getElementById('f_ascensore').checked,
+    piscina: document.getElementById('f_piscina').checked,
+    arredato: document.getElementById('f_arredato').checked,
+    ingresso_indipendente: document.getElementById('f_ingresso_indipendente').checked,
+    canna_fumaria: document.getElementById('f_canna_fumaria').checked,
+    animali_ammessi: document.getElementById('f_animali_ammessi').checked,
+    annuncio_prestigio: document.getElementById('f_annuncio_prestigio').checked,
+    chiavi_agenzia: document.getElementById('f_chiavi_agenzia').checked,
+    immobile_garantito: document.getElementById('f_immobile_garantito').checked,
+    num_accessi_carrai: parseInt(document.getElementById('f_num_accessi_carrai').value)||null,
+    num_portoni: parseInt(document.getElementById('f_num_portoni').value)||null,
+    impianto_elettrico: document.getElementById('f_impianto_elettrico').value||null,
+    panorama: document.getElementById('f_panorama').value||null,
+    consegna: document.getElementById('f_consegna').value||null,
+    spese_condominio: parseFloat(document.getElementById('f_spese_condominio').value)||null,
+    // Riscaldamento
+    riscaldamento_autonomo: document.getElementById('f_riscaldamento_autonomo').checked,
+    riscaldamento_centralizzato: document.getElementById('f_riscaldamento_centralizzato').checked,
+    aria_condizionata: document.getElementById('f_aria_condizionata').checked,
+    // Catasto
+    rendita_catastale: parseFloat(document.getElementById('f_rendita_catastale').value)||null,
+    valore_catastale: parseFloat(document.getElementById('f_valore_catastale').value)||null,
+    prezzo_reale: parseFloat(document.getElementById('f_prezzo_reale').value)||null,
+    // Pubblicazione
     attivo: document.getElementById('f_attivo').checked,
     in_evidenza: document.getElementById('f_in_evidenza').checked,
     venduto: document.getElementById('f_venduto').checked,
@@ -1283,8 +1720,8 @@ async function saveImmobile(e) {
     document.getElementById('formTitle').textContent = 'Nuovo Immobile';
     document.getElementById('immobileForm').reset();
     document.getElementById('f_attivo').checked = true;
-    currentFotos = [];
-    renderFotos();
+    currentFotos = []; currentPlanimetrie = []; currentDocumenti = []; currentVtScenes = [];
+    renderFotos(); renderPlanimetrie(); renderDocumenti(); renderVtScenes();
     await loadImmobili();
     showSectionById('immobili');
   }
@@ -1319,6 +1756,7 @@ function showSectionById(name) {
 // ══════════════════════════════════════
 // FOTO MANAGER
 // ══════════════════════════════════════
+// addFoto legacy - see addFotoUrl
 function addFoto() {
   const url = document.getElementById('fotoUrlInput').value.trim();
   if (!url) return;
@@ -1448,6 +1886,213 @@ function toast(msg, type = '') {
 // START
 // ══════════════════════════════════════
 
+
+// ══════════════════════════════════════
+// UPLOAD SUPABASE STORAGE
+// ══════════════════════════════════════
+
+function getFileIcon(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  const icons = {pdf:'📄',doc:'📝',docx:'📝',xls:'📊',xlsx:'📊',dxf:'📐',dwg:'📐',zip:'🗜️',ppt:'📋',pptx:'📋'};
+  return icons[ext] || '📎';
+}
+
+function slugify(name) {
+  return name.toLowerCase().replace(/[^a-z0-9.]/g,'-').replace(/-+/g,'-');
+}
+
+function onDragOver(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+function onDragLeave(e, id) {
+  document.getElementById(id).classList.remove('drag-over');
+}
+function onDrop(e, bucket) {
+  e.preventDefault();
+  const zoneId = bucket === 'foto' ? 'dropZoneFoto' : bucket === 'planimetrie' ? 'dropZonePlan' : 'dropZoneDoc';
+  document.getElementById(zoneId).classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files, bucket);
+}
+
+async function handleFiles(files, bucket) {
+  const arr = Array.from(files);
+  if (!arr.length) return;
+
+  const progWrap = document.getElementById('progress' + (bucket==='foto'?'Foto':bucket==='planimetrie'?'Plan':'Doc'));
+  const progFill = document.getElementById('progress' + (bucket==='foto'?'Foto':bucket==='planimetrie'?'Plan':'Doc') + 'Fill');
+  const progText = document.getElementById('progress' + (bucket==='foto'?'Foto':bucket==='planimetrie'?'Plan':'Doc') + 'Text');
+
+  progWrap.style.display = 'flex';
+  let done = 0;
+
+  for (const file of arr) {
+    const maxMB = bucket === 'documenti' ? 20 : 10;
+    if (file.size > maxMB * 1024 * 1024) {
+      toast('⚠️ ' + file.name + ' supera ' + maxMB + 'MB', 'error');
+      continue;
+    }
+
+    progText.textContent = 'Caricamento ' + (done+1) + '/' + arr.length + ': ' + file.name;
+    progFill.style.width = Math.round((done / arr.length) * 100) + '%';
+
+    const ts = Date.now();
+    const safeName = ts + '-' + slugify(file.name);
+    const path = safeName;
+
+    const { data, error } = await sb.storage.from(bucket === 'foto' ? 'foto-immobili' : bucket).upload(path, file, {
+      cacheControl: '3600',
+      upsert: false,
+      contentType: file.type
+    });
+
+    if (error) {
+      toast('❌ Errore upload: ' + file.name + ' — ' + error.message, 'error');
+    } else {
+      const { data: urlData } = sb.storage.from(bucket === 'foto' ? 'foto-immobili' : bucket).getPublicUrl(path);
+      const publicUrl = urlData.publicUrl;
+
+      if (bucket === 'foto') {
+        currentFotos.push(publicUrl);
+        renderFotos();
+      } else if (bucket === 'planimetrie') {
+        currentPlanimetrie.push({ url: publicUrl, nome: file.name });
+        renderPlanimetrie();
+      } else {
+        currentDocumenti.push({ url: publicUrl, nome: file.name, tipo: file.name.split('.').pop().toUpperCase() });
+        renderDocumenti();
+      }
+      toast('✅ ' + file.name + ' caricato!', 'success');
+    }
+
+    done++;
+    progFill.style.width = Math.round((done / arr.length) * 100) + '%';
+  }
+
+  progText.textContent = '✅ ' + done + ' file caricati';
+  setTimeout(() => { progWrap.style.display = 'none'; }, 2000);
+}
+
+function addFotoUrl() {
+  const url = document.getElementById('fotoUrlInput').value.trim();
+  if (!url) return;
+  currentFotos.push(url);
+  renderFotos();
+  document.getElementById('fotoUrlInput').value = '';
+}
+
+function renderFotos() {
+  const el = document.getElementById('fotoList');
+  if (!currentFotos.length) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--caffe2);padding:8px">Nessuna foto ancora</div>'; return; }
+  el.innerHTML = '<div class="foto-grid">' + currentFotos.map((url, i) => `
+    <div class="foto-thumb">
+      <img src="${url}" alt="Foto ${i+1}" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23eee\'/></svg>'">
+      <button class="foto-del" onclick="removeFoto(${i})" title="Elimina">✕</button>
+      <span class="foto-badge">${i===0?'🌟 Cover':i+1}</span>
+    </div>
+  `).join('') + '</div>';
+}
+
+function removeFoto(i) {
+  currentFotos.splice(i, 1);
+  renderFotos();
+}
+
+function renderPlanimetrie() {
+  const el = document.getElementById('planimetrieList');
+  if (!currentPlanimetrie.length) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--caffe2);padding:8px">Nessuna planimetria ancora</div>'; return; }
+  el.innerHTML = '<div class="foto-grid">' + currentPlanimetrie.map((p, i) => {
+    const isImg = /\.(jpg|jpeg|png|webp|gif)$/i.test(p.url);
+    return `<div class="foto-thumb">
+      ${isImg ? `<img src="${p.url}" alt="Planimetria ${i+1}">` : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem;background:#f0f0f0">📐</div>`}
+      <button class="foto-del" onclick="removePlanimetria(${i})" title="Elimina">✕</button>
+      <span class="foto-badge">${i+1}</span>
+    </div>`;
+  }).join('') + '</div>';
+}
+
+function removePlanimetria(i) {
+  currentPlanimetrie.splice(i, 1);
+  renderPlanimetrie();
+}
+
+function renderDocumenti() {
+  const el = document.getElementById('documentiList');
+  if (!currentDocumenti.length) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--caffe2);padding:8px">Nessun documento ancora</div>'; return; }
+  el.innerHTML = currentDocumenti.map((d, i) => `
+    <div class="doc-item">
+      <span class="doc-icon">${getFileIcon(d.nome)}</span>
+      <div class="doc-info">
+        <div class="doc-name">${d.nome}</div>
+        <div class="doc-meta">${d.tipo || ''}</div>
+      </div>
+      <div class="doc-actions">
+        <a href="${d.url}" target="_blank">👁️ Vedi</a>
+        <button class="doc-del" onclick="removeDocumento(${i})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function removeDocumento(i) {
+  currentDocumenti.splice(i, 1);
+  renderDocumenti();
+}
+
+// VT SCENES
+function addVtScene() {
+  const idx = currentVtScenes.length;
+  currentVtScenes.push({ nome: 'Stanza ' + (idx+1), url: '', thumbnail: '' });
+  renderVtScenes();
+}
+
+function renderVtScenes() {
+  const el = document.getElementById('vtScenesList');
+  if (!currentVtScenes.length) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--caffe2);padding:8px">Nessuna stanza aggiunta</div>'; return; }
+  el.innerHTML = currentVtScenes.map((s, i) => `
+    <div class="vt-scene-card">
+      <div class="vt-scene-header">
+        <div class="vt-scene-num">${i+1}</div>
+        <input class="vt-scene-name" type="text" value="${s.nome}" placeholder="Nome stanza (es. Soggiorno)" onchange="currentVtScenes[${i}].nome=this.value">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="removeVtScene(${i})" style="background:var(--rosso);color:white;border-color:var(--rosso)">✕</button>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input type="url" placeholder="URL foto 360° equirettangolare" value="${s.url}"
+          style="flex:1;padding:8px 10px;border:1.5px solid var(--caffe3);border-radius:6px;font-family:Montserrat,sans-serif;font-size:0.78rem"
+          onchange="currentVtScenes[${i}].url=this.value;updateVtPreview(${i},this.value)">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('inputVt${i}').click()">📤 Carica</button>
+        <input type="file" id="inputVt${i}" accept="image/*" style="display:none" onchange="uploadVtScene(this.files[0],${i})">
+      </div>
+      ${s.url ? `<img src="${s.url}" class="vt-scene-preview" id="vtPrev${i}" onerror="this.style.display='none'" style="display:block">` : `<div id="vtPrev${i}"></div>`}
+    </div>
+  `).join('');
+}
+
+function updateVtPreview(i, url) {
+  const el = document.getElementById('vtPrev' + i);
+  if (!el) return;
+  if (url) { el.outerHTML = `<img src="${url}" class="vt-scene-preview" id="vtPrev${i}" style="display:block">`; }
+}
+
+async function uploadVtScene(file, idx) {
+  if (!file) return;
+  toast('⏳ Caricamento foto 360°...', 'success');
+  const path = Date.now() + '-360-' + slugify(file.name);
+  const { data, error } = await sb.storage.from('foto-immobili').upload(path, file, { cacheControl:'3600', upsert:false });
+  if (error) { toast('❌ Errore: ' + error.message, 'error'); return; }
+  const { data: urlData } = sb.storage.from('foto-immobili').getPublicUrl(path);
+  currentVtScenes[idx].url = urlData.publicUrl;
+  currentVtScenes[idx].thumbnail = urlData.publicUrl;
+  renderVtScenes();
+  toast('✅ Foto 360° caricata!', 'success');
+}
+
+function removeVtScene(i) {
+  currentVtScenes.splice(i, 1);
+  renderVtScenes();
+}
+
+
 // IMPORTA DA IDEALISTA
 function openImportModal() {
   document.getElementById('importModal').classList.add('open');
@@ -1467,10 +2112,12 @@ function doImport() {
   const map = {codice:'f_codice',titolo:'f_titolo',tipo_operazione:'f_tipo_operazione',categoria:'f_categoria',tipologia:'f_tipologia',comune:'f_comune',indirizzo:'f_indirizzo',prezzo:'f_prezzo',superficie:'f_superficie',locali:'f_locali',bagni:'f_bagni',piano:'f_piano',anno_costruzione:'f_anno_costruzione',stato:'f_stato',classe_energetica:'f_classe_energetica',youtube_id:'f_youtube_id',virtual_tour:'f_virtual_tour',planimetria:'f_planimetria',id_idealista:'f_id_idealista',note_interne:'f_note_interne',lat:'f_lat',lng:'f_lng'};
   Object.entries(map).forEach(([k,id])=>{const el=document.getElementById(id);if(el&&data[k]!==undefined&&data[k]!==null)el.value=data[k];});
   ['garage','giardino','terrazzo','cantina','ascensore','piscina','arredato','attivo','in_evidenza','venduto','affittato'].forEach(k=>{const el=document.getElementById('f_'+k);if(el&&data[k]!==undefined)el.checked=!!data[k];});
-  if(Array.isArray(data.foto)&&data.foto.length>0){currentFotos=[...data.foto];renderFotos();}
+  // Le foto di Idealista NON vengono importate (copyright)
+currentFotos=[];
+renderFotos();
   document.getElementById('f_attivo').checked=true;
   closeImportModal();
-  toast('✅ '+(data.foto?.length||0)+' foto + dati importati!','success');
+  toast('✅ Dati importati! Aggiungi le tue foto.','success');
   window.scrollTo(0,200);
 }
 
@@ -1487,10 +2134,11 @@ checkAuth();
     </div>
     <div class="modal-body">
       <p style="font-size:0.85rem;color:var(--caffe2);margin-bottom:16px">
-        1️⃣ Apri annuncio su Idealista<br>
-        2️⃣ Premi <strong>F12</strong> → tab <strong>Console</strong><br>
-        3️⃣ Incolla il bookmarklet e premi Invio<br>
-        4️⃣ Copia il JSON che appare qui sotto
+        1️⃣ Salva il bookmarklet qui sotto nei preferiti del browser<br>
+        2️⃣ Apri annuncio Idealista → clicca il bookmarklet<br>
+        3️⃣ Appare un alert: <strong>"Dati copiati!"</strong><br>
+        4️⃣ Incolla qui il JSON con <strong>Ctrl+V</strong><br>
+        ⚠️ Le foto NON vengono importate (copyright Idealista)
       </p>
       <div class="form-group">
         <label>Incolla qui il JSON copiato dal bookmarklet</label>
@@ -1503,9 +2151,10 @@ checkAuth();
       <div id="importError" style="color:var(--rosso);font-size:0.82rem;margin-top:8px;display:none"></div>
       <div style="background:var(--sfondo);border-radius:8px;padding:12px;margin-top:12px">
         <div style="font-size:0.75rem;font-weight:600;color:var(--caffe2);margin-bottom:8px">BOOKMARKLET — salva nei preferiti del browser:</div>
-        <code style="font-size:0.68rem;word-break:break-all;color:var(--nero)">javascript:(function(){const cfg=window.config||{};const mm=window.adMultimediasInfo||{};const id=String(cfg.propertyId||"");const op=cfg.operation||"";const tipo=op==="rent"?"affitto":op==="sale"?"vendita":"asta";const titolo=document.querySelector(".main-info__title-main")?.textContent?.trim()||"?";const comune=document.querySelector(".main-info__title-minor")?.textContent?.trim()||"Padova";const prezzo_txt=document.querySelector(".info-data-price .txt-bold")?.textContent?.trim()||"0";const prezzo=parseFloat(prezzo_txt.replace(/\./g,"").replace(",","."))||null;const chars=[...document.querySelectorAll(".details-property_features li")].map(li=>li.textContent.trim());const desc=document.querySelector(".comment .adCommentsLanguage p")?.textContent?.trim()||"?";const tipologie={warehouse:"capannone",apartment:"appartamento",villa:"villa",penthouse:"attico",office:"ufficio",store:"negozio",garage:"garage"};const tipologia=tipologie[cfg.typology||"?"]||cfg.typology||"?";const categoria=["warehouse","office","store"].includes(cfg.typology)?"commerciale":"residenziale";let foto=[];try{const pics=cfg.multimediaCarrousel?.multimedias?.find(m=>m.type==="PICTURE")?.content||[];foto=pics.map(p=>p.src||p.imageDataService).filter(Boolean);}catch(e){foto=(mm.picturesWithoutPlans||[]).map(p=>p.imageDataService).filter(Boolean);}const codice=document.querySelector(".txt-ref")?.textContent?.trim()||"RIG"+id.slice(-4);const feats=[...document.querySelectorAll(".info-features span")].map(s=>s.textContent.trim());const sup=parseInt(feats.find(f=>f.match(/^\d/))||"0")||null;const dl=desc.toLowerCase();const r={codice,titolo,tipo_operazione:tipo,categoria,tipologia,comune,prezzo,superficie:sup,foto,garage:dl.includes("garage")||dl.includes("parcheggio"),giardino:dl.includes("giardino"),terrazzo:dl.includes("terraz"),ascensore:dl.includes("ascensore"),piscina:dl.includes("piscina"),arredato:dl.includes("arredato"),id_idealista:id,note_interne:desc.substring(0,500),attivo:true,in_evidenza:false,venduto:false,affittato:false};const json=JSON.stringify(r,null,2);console.log("%c✅ DATI ESTRATTI:","background:#CEE08F;color:#1E3A5C;font-size:14px;font-weight:bold");console.log(json);navigator.clipboard.writeText(json).then(()=>alert("✅ "+foto.length+" foto + dati copiati!
+        <code style="font-size:0.68rem;word-break:break-all;color:var(--nero)">javascript:(function(){const cfg=window.config||{};const mm=window.adMultimediasInfo||{};const id=String(cfg.propertyId||"");const op=cfg.operation||"";const tipo=op==="rent"?"affitto":op==="sale"?"vendita":"asta";const titolo=document.querySelector(".main-info__title-main")?.textContent?.trim()||"?";const comune=document.querySelector(".main-info__title-minor")?.textContent?.trim()||"Padova";const prezzo_txt=document.querySelector(".info-data-price .txt-bold")?.textContent?.trim()||"0";const prezzo=parseFloat(prezzo_txt.replace(/\./g,"").replace(",","."))||null;const chars=[...document.querySelectorAll(".details-property_features li")].map(li=>li.textContent.trim());const desc=document.querySelector(".comment .adCommentsLanguage p")?.textContent?.trim()||"?";const tipologie={warehouse:"capannone",apartment:"appartamento",villa:"villa",penthouse:"attico",office:"ufficio",store:"negozio",garage:"garage"};const tipologia=tipologie[cfg.typology||"?"]||cfg.typology||"?";const categoria=["warehouse","office","store"].includes(cfg.typology)?"commerciale":"residenziale";let foto=[];try{const pics=cfg.multimediaCarrousel?.multimedias?.find(m=>m.type==="PICTURE")?.content||[];foto=[];}catch(e){foto=[];}const codice=document.querySelector(".txt-ref")?.textContent?.trim()||"RIG"+id.slice(-4);const feats=[...document.querySelectorAll(".info-features span")].map(s=>s.textContent.trim());const sup=parseInt(feats.find(f=>f.match(/^\d/))||"0")||null;const dl=desc.toLowerCase();const r={codice,titolo,tipo_operazione:tipo,categoria,tipologia,comune,prezzo,superficie:sup,foto,garage:dl.includes("garage")||dl.includes("parcheggio"),giardino:dl.includes("giardino"),terrazzo:dl.includes("terraz"),ascensore:dl.includes("ascensore"),piscina:dl.includes("piscina"),arredato:dl.includes("arredato"),id_idealista:id,note_interne:desc.substring(0,500),attivo:true,in_evidenza:false,venduto:false,affittato:false};const json=JSON.stringify(r,null,2);console.log("%c✅ DATI ESTRATTI:","background:#CEE08F;color:#1E3A5C;font-size:14px;font-weight:bold");console.log(json);navigator.clipboard.writeText(json).then(()=>alert("✅ Dati copiati!
 
-Vai Admin → Nuovo → Importa da Idealista")).catch(()=>alert("Apri Console F12 e copia il JSON"));})();</code>
+Vai Admin → Nuovo → Importa da Idealista
+(Le foto le aggiungi tu)")).catch(()=>alert("Apri Console F12 e copia il JSON"));})();</code>
       </div>
     </div>
     <div class="modal-footer">
