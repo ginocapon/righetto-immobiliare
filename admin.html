@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — Righetto Immobiliare</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--nero:#0a0a0a;--bianco:#f5f2ed;--oro:#c9a84c;--oro-bg:rgba(201,168,76,.08);--grigio:#6b6560;--gc:#e8e4de;--verde:#4a5c4e;--rosso:#b84c4c;--blu:#2c4a7c;--sfondo:#f0ece6}
-    body{font-family:'DM Sans',sans-serif;background:var(--sfondo);color:var(--nero);min-height:100vh}
+    :root{--nero:#3A5578;--bianco:#fafaf5;--oro:#CEE08F;--oro-bg:rgba(201,168,76,.08);--grigio:#7A9AB8;--gc:#A8C0D6;--verde:#4a5c4e;--rosso:#b84c4c;--blu:#4A6A8C;--sfondo:#f5f0e8}
+    body{font-family:'Montserrat',sans-serif;background:var(--sfondo);color:var(--nero);min-height:100vh}
     .wrap{display:grid;grid-template-columns:225px 1fr;min-height:100vh}
 
     /* ── SIDEBAR ── */
     aside{background:var(--nero);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
     .logo{padding:1.2rem;border-bottom:1px solid rgba(255,255,255,.07);font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:#fff}
     .logo span{color:var(--oro);font-style:italic}
-    .logo small{display:block;font-family:'DM Sans',sans-serif;font-size:.6rem;color:rgba(255,255,255,.28);letter-spacing:.08em;margin-top:.2rem}
+    .logo small{display:block;font-family:'Montserrat',sans-serif;font-size:.6rem;color:rgba(255,255,255,.28);letter-spacing:.08em;margin-top:.2rem}
     .ns{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.22);padding:.9rem 1.2rem .3rem}
-    .ni{display:flex;align-items:center;gap:.6rem;padding:.58rem 1.2rem;color:rgba(255,255,255,.48);font-size:.81rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;transition:color .2s,background .2s;border-left:2px solid transparent;text-decoration:none}
+    .ni{display:flex;align-items:center;gap:.6rem;padding:.58rem 1.2rem;color:rgba(255,255,255,.48);font-size:.81rem;border:none;background:none;width:100%;text-align:left;cursor:pointer;font-family:'Montserrat',sans-serif;transition:color .2s,background .2s;border-left:2px solid transparent;text-decoration:none}
     .ni:hover{color:#fff;background:rgba(255,255,255,.04)}
     .ni.active{color:#fff;background:var(--oro-bg);border-left-color:var(--oro)}
     .ni svg{width:14px;height:14px;flex-shrink:0}
@@ -32,11 +32,11 @@
     main{display:flex;flex-direction:column;overflow:hidden}
     .topbar{background:#fff;border-bottom:1px solid var(--gc);padding:0 1.8rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
     .tb-title{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:600;display:flex;align-items:center;gap:.55rem}
-    .tb-sub{font-family:'DM Sans',sans-serif;font-size:.7rem;color:var(--grigio);font-weight:400}
+    .tb-sub{font-family:'Montserrat',sans-serif;font-size:.7rem;color:var(--grigio);font-weight:400}
     .tb-right{display:flex;align-items:center;gap:.6rem}
 
     /* ── BUTTONS ── */
-    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .95rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;transition:background .2s,transform .15s;white-space:nowrap;text-decoration:none}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .95rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;font-weight:500;transition:background .2s,transform .15s;white-space:nowrap;text-decoration:none}
     .btn:hover{transform:translateY(-1px)}
     .btn svg{width:12px;height:12px}
     .btn-dark{background:var(--nero);color:#fff}.btn-dark:hover{background:var(--oro);color:var(--nero)}
@@ -71,7 +71,7 @@
     .ri-m{font-size:.68rem;color:var(--grigio)}
     .ri-p{margin-left:auto;font-family:'Cormorant Garamond',serif;font-size:.98rem;font-weight:600;white-space:nowrap}
     .qa{display:flex;flex-direction:column;gap:.45rem}
-    .qa-btn{display:flex;align-items:center;gap:.65rem;padding:.65rem .85rem;border:1px solid var(--gc);background:var(--bianco);border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.79rem;color:var(--nero);transition:border-color .2s,background .2s;text-align:left}
+    .qa-btn{display:flex;align-items:center;gap:.65rem;padding:.65rem .85rem;border:1px solid var(--gc);background:var(--bianco);border-radius:2px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.79rem;color:var(--nero);transition:border-color .2s,background .2s;text-align:left}
     .qa-btn:hover{border-color:var(--oro);background:#fff}
     .qa-btn svg{width:14px;height:14px;color:var(--oro);flex-shrink:0}
 
@@ -79,9 +79,9 @@
     .toolbar{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;flex-wrap:wrap}
     .sw{flex:1;min-width:160px;position:relative}
     .sw svg{position:absolute;left:.6rem;top:50%;transform:translateY(-50%);width:12px;height:12px;color:var(--grigio);pointer-events:none}
-    .sw input{width:100%;padding:.46rem .65rem .46rem 1.9rem;border:1px solid var(--gc);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.81rem;background:#fff}
+    .sw input{width:100%;padding:.46rem .65rem .46rem 1.9rem;border:1px solid var(--gc);border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.81rem;background:#fff}
     .sw input:focus{outline:none;border-color:var(--oro)}
-    .fsel{border:1px solid var(--gc);border-radius:2px;padding:.46rem .65rem;font-family:'DM Sans',sans-serif;font-size:.76rem;background:#fff;color:var(--nero)}
+    .fsel{border:1px solid var(--gc);border-radius:2px;padding:.46rem .65rem;font-family:'Montserrat',sans-serif;font-size:.76rem;background:#fff;color:var(--nero)}
     .tw{background:#fff;border:1px solid var(--gc);border-radius:3px;overflow:auto}
     table{width:100%;border-collapse:collapse}
     thead{background:var(--bianco)}
@@ -114,7 +114,7 @@
     /* IMMOBILE TABS */
     .itabs{display:flex;background:#fff;border:1px solid var(--gc);border-bottom:none;border-radius:3px 3px 0 0;overflow-x:auto}
     .itabs::-webkit-scrollbar{display:none}
-    .itab{display:flex;align-items:center;gap:.35rem;padding:.6rem .95rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.04em;color:var(--grigio);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;flex-shrink:0}
+    .itab{display:flex;align-items:center;gap:.35rem;padding:.6rem .95rem;border:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.04em;color:var(--grigio);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;flex-shrink:0}
     .itab:hover{color:var(--nero)}
     .itab.active{color:var(--nero);border-bottom-color:var(--oro);background:var(--bianco)}
     .itab svg{width:11px;height:11px}
@@ -138,7 +138,7 @@
     .field{display:flex;flex-direction:column;gap:.25rem}
     .field label{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grigio);font-weight:500}
     .req{color:var(--oro)}
-    .field input,.field select,.field textarea{border:1px solid var(--gc);border-radius:2px;padding:.48rem .62rem;font-family:'DM Sans',sans-serif;font-size:.83rem;color:var(--nero);background:var(--bianco);transition:border-color .2s;width:100%}
+    .field input,.field select,.field textarea{border:1px solid var(--gc);border-radius:2px;padding:.48rem .62rem;font-family:'Montserrat',sans-serif;font-size:.83rem;color:var(--nero);background:var(--bianco);transition:border-color .2s;width:100%}
     .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--oro);background:#fff}
     .field textarea{resize:vertical;min-height:88px;line-height:1.65}
     .fnote{font-size:.66rem;color:var(--grigio);margin-top:.12rem}
@@ -161,7 +161,7 @@
 
     /* STATO */
     .stato-row{display:grid;grid-template-columns:1fr 1fr;gap:.38rem}
-    .stato-btn{padding:.5rem;border:1px solid var(--gc);background:#fff;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.04em;text-align:center;cursor:pointer;transition:background .2s,border-color .2s,color .2s;color:var(--grigio)}
+    .stato-btn{padding:.5rem;border:1px solid var(--gc);background:#fff;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.04em;text-align:center;cursor:pointer;transition:background .2s,border-color .2s,color .2s;color:var(--grigio)}
     .stato-btn.s-pub.on{background:var(--verde);border-color:var(--verde);color:#fff}
     .stato-btn.s-boz.on{background:var(--grigio);border-color:var(--grigio);color:#fff}
     .stato-btn.s-ev.on{background:var(--oro);border-color:var(--oro);color:var(--nero)}
@@ -210,7 +210,7 @@
 
     /* YOUTUBE */
     .yt-row{display:flex;gap:.55rem;margin-bottom:.75rem}
-    .yt-row input{flex:1;padding:.48rem .62rem;border:1px solid var(--gc);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.83rem;background:var(--bianco)}
+    .yt-row input{flex:1;padding:.48rem .62rem;border:1px solid var(--gc);border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.83rem;background:var(--bianco)}
     .yt-row input:focus{outline:none;border-color:var(--oro)}
     .yt-box{background:var(--nero);border-radius:3px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin-bottom:.65rem}
     .yt-box iframe{width:100%;height:100%;border:none}
@@ -224,7 +224,7 @@
 
     /* VIRTUAL TOUR */
     .vt-row{display:flex;gap:.55rem;margin-bottom:.75rem}
-    .vt-row input{flex:1;padding:.48rem .62rem;border:1px solid var(--gc);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.83rem;background:var(--bianco)}
+    .vt-row input{flex:1;padding:.48rem .62rem;border:1px solid var(--gc);border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.83rem;background:var(--bianco)}
     .vt-row input:focus{outline:none;border-color:var(--oro)}
     .vt-box{background:var(--gc);border-radius:3px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid var(--gc);margin-bottom:.65rem}
     .vt-box iframe{width:100%;height:100%;border:none}
@@ -259,12 +259,12 @@
     .cat-tbl th{padding:.52rem .65rem;background:var(--bianco);text-align:left;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grigio);border-bottom:1px solid var(--gc)}
     .cat-tbl td{padding:.52rem .65rem;border-bottom:1px solid var(--gc)}
     .cat-tbl tr:last-child td{border-bottom:none}
-    .cat-tbl input{border:1px solid var(--gc);padding:.26rem .38rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.76rem;background:var(--bianco)}
-    .cat-tbl select{border:1px solid var(--gc);padding:.26rem .38rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.76rem;background:var(--bianco)}
+    .cat-tbl input{border:1px solid var(--gc);padding:.26rem .38rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.76rem;background:var(--bianco)}
+    .cat-tbl select{border:1px solid var(--gc);padding:.26rem .38rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.76rem;background:var(--bianco)}
     .cat-totals{background:var(--bianco);padding:.65rem .9rem;border:1px solid var(--gc);border-radius:2px;display:grid;grid-template-columns:1fr 1fr 1fr 155px;gap:.65rem;align-items:center;margin-bottom:.75rem}
     .ct-lbl{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grigio);margin-bottom:.2rem}
     .ct-val{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600}
-    .ct-price{border:1px solid var(--gc);padding:.36rem .55rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.83rem;width:100%;background:#fff;text-align:right;font-weight:600}
+    .ct-price{border:1px solid var(--gc);padding:.36rem .55rem;border-radius:2px;font-family:'Montserrat',sans-serif;font-size:.83rem;width:100%;background:#fff;text-align:right;font-weight:600}
 
     /* STIMA */
     .stima-note{background:var(--bianco);border:1px solid var(--gc);border-radius:2px;padding:.75rem .9rem;font-size:.78rem;color:var(--grigio);line-height:1.6;margin-top:.75rem}
@@ -280,7 +280,7 @@
     .br-header{padding:1.3rem 1.8rem;border-bottom:3px solid var(--nero);display:flex;align-items:flex-start;justify-content:space-between}
     .br-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600}
     .br-logo span{color:var(--oro);font-style:italic}
-    .br-logo-info{font-family:'DM Sans',sans-serif;font-size:.71rem;color:var(--grigio);margin-top:.28rem;line-height:1.65}
+    .br-logo-info{font-family:'Montserrat',sans-serif;font-size:.71rem;color:var(--grigio);margin-top:.28rem;line-height:1.65}
     .br-rif{text-align:right}
     .br-rif-lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grigio)}
     .br-rif-code{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:600;line-height:1.1}
@@ -913,7 +913,7 @@
           <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:.7rem;">
             <div style="display:flex;align-items:center;gap:.7rem;padding:.5rem .7rem;background:var(--bianco);border:1px solid var(--gc);border-radius:2px;font-size:.82rem;">
               <div class="sb-av" style="width:26px;height:26px;font-size:.75rem;">G</div>Capon Gino — <span style="color:var(--grigio);">Amministratore</span>
-              <span style="margin-left:auto;font-size:.7rem;color:var(--grigio);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ccaba5a2a38cbea5aba4a9b8b8a3a5a1a1a3aea5a0a5adbea9e2a5b8">[email&#160;protected]</a></span>
+              <span style="margin-left:auto;font-size:.7rem;color:var(--grigio);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1077797e7f50627977787564647f797d7d7f72797c797162753e7964">[email&#160;protected]</a></span>
             </div>
             <div style="display:flex;align-items:center;gap:.7rem;padding:.5rem .7rem;background:var(--bianco);border:1px solid var(--gc);border-radius:2px;font-size:.82rem;">
               <div class="sb-av" style="width:26px;height:26px;font-size:.75rem;background:#4a6741;">R</div>Righetto Linda — <span style="color:var(--grigio);">Agente</span>
