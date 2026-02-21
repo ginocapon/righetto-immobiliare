@@ -1361,7 +1361,7 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                     <div class="progress-bar"><div class="progress-fill" id="progressFotoFill"></div></div>
                     <span id="progressFotoText">Caricamento...</span>
                   </div>
-                  <div class="foto-list" id="fotoList" style="width:100%"></div>
+                  <div id="fotoList" style="width:100%"></div>
                   <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--caffe3)">
                     <label style="font-size:0.75rem;color:var(--caffe2)">oppure aggiungi URL diretto:</label>
                     <div class="url-input-row" style="margin-top:4px">
@@ -1384,7 +1384,7 @@ tr:hover td { background: rgba(206,224,143,0.06); }
                     <div class="progress-bar"><div class="progress-fill" id="progressPlanFill"></div></div>
                     <span id="progressPlanText">Caricamento...</span>
                   </div>
-                  <div class="foto-list" id="planimetrieList"></div>
+                  <div id="planimetrieList"></div>
                 </div>
 
                 <!-- ═══ DOCUMENTI PDF ═══ -->
@@ -1687,7 +1687,7 @@ function renderTable(data) {
       <td>${stato}</td>
       <td>
         <div style="display:flex;gap:6px">
-          <button class="btn btn-secondary btn-sm" onclick='editImmobile(${JSON.stringify(i)})'>✏️</button>
+          <button class="btn btn-secondary btn-sm" onclick="editImmobile(${i.id})">✏️</button>
           <button class="btn btn-danger btn-sm" onclick="deleteImmobile('${i.id}','${(i.titolo||'').replace(/'/g,"\\'")}')">🗑️</button>
           <button class="btn btn-sm" onclick="toggleEvidenza('${i.id}',${!i.in_evidenza})" title="Toggle evidenza" style="background:var(--sfondo)">⭐</button>
           <button class="btn btn-sm" onclick="toggleAttivo('${i.id}',${!i.attivo})" title="Toggle attivo" style="background:var(--sfondo)">${i.attivo ? '👁️' : '🚫'}</button>
