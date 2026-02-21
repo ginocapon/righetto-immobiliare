@@ -1922,11 +1922,29 @@ async function saveImmobile(e) {
     note_interne: document.getElementById('f_note_interne').value || null,
   };
 
+  // Salva con retry: se colonna mancante la rimuove e riprova
   let error;
-  if (id) {
-    ({ error } = await sb.from('immobili').update(payload).eq('id', id));
-  } else {
-    ({ error } = await sb.from('immobili').insert(payload));
+  let attempts = 0;
+  let currentPayload = {...payload};
+  while (attempts < 20) {
+    let res;
+    if (id) {
+      res = await sb.from('immobili').update(currentPayload).eq('id', id);
+    } else {
+      res = await sb.from('immobili').insert(currentPayload);
+    }
+    error = res.error;
+    if (!error) break;
+    // Se errore è "column not found" rimuovi quella colonna e riprova
+    const match = error.message.match(/Could not find the '([^']+)' column/);
+    if (match) {
+      const badCol = match[1];
+      console.warn('Colonna non trovata, rimuovo:', badCol);
+      delete currentPayload[badCol];
+      attempts++;
+    } else {
+      break; // altro tipo di errore, esci
+    }
   }
 
   btn.disabled = false;
@@ -2195,14 +2213,12 @@ function addFotoUrl() {
 function renderFotos() {
   const el = document.getElementById('fotoList');
   if (!currentFotos.length) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--caffe2);padding:8px">Nessuna foto ancora</div>'; return; }
-  const w = el.offsetWidth || 900;
-  const thumbW = Math.floor((w - 50) / 6);
-  el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;width:100%;margin-top:12px">' + currentFotos.map((url, i) => `
-    <div style="height:${thumbW*0.75}px;position:relative;border-radius:10px;overflow:hidden;background:#ddd;border:2px solid transparent">
-      <img src="${url}" alt="Foto ${i+1}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block"
-        onerror="this.style.display='none'">
-      <button onclick="removeFoto(${i})" style="position:absolute;top:4px;right:4px;background:rgba(231,76,60,0.95);color:white;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:0.85rem;line-height:1;z-index:2">✕</button>
-      <span style="position:absolute;bottom:4px;left:4px;background:rgba(30,58,92,0.85);color:white;font-size:0.6rem;padding:2px 5px;border-radius:3px">${i===0?'🌟':i+1}</span>
+  const W = el.offsetWidth || 800;
+  const colW = Math.floor((W - 50) / 6);
+  el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:12px;width:100%">' + currentFotos.map((url, i) => `
+    <div style="height:120px;border-radius:8px;overflow:hidden;background:url('${url}') center/cover no-repeat #ccc;position:relative;border:2px solid #ddd">
+      <button onclick="removeFoto(${i})" style="position:absolute;top:3px;right:3px;background:rgba(220,50,50,0.9);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:11px;line-height:22px;text-align:center;padding:0;z-index:9">✕</button>
+      <span style="position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,0.6);color:#fff;font-size:9px;padding:1px 4px;border-radius:3px">${i===0?'⭐':i+1}</span>
     </div>
   `).join('') + '</div>';
 }
@@ -2215,12 +2231,13 @@ function removeFoto(i) {
 function renderPlanimetrie() {
   const el = document.getElementById('planimetrieList');
   if (!currentPlanimetrie.length) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--caffe2);padding:8px">Nessuna planimetria ancora</div>'; return; }
-  el.innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">' + currentPlanimetrie.map((p, i) => {
+  el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:12px;width:100%">' + currentPlanimetrie.map((p, i) => {
     const isImg = /\.(jpg|jpeg|png|webp|gif)$/i.test(p.url||'');
-    return `<div style="width:calc(16.66% - 9px);min-width:120px;height:130px;position:relative;border-radius:10px;overflow:hidden;background:#ddd;flex-shrink:0">
-      ${isImg ? `<img src="${p.url}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block">` : `<div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:#f0f0f0">📐</div>`}
-      <button onclick="removePlanimetria(${i})" style="position:absolute;top:4px;right:4px;background:rgba(231,76,60,0.95);color:white;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:0.85rem;z-index:2">✕</button>
-      <span style="position:absolute;bottom:4px;left:4px;background:rgba(58,85,120,0.85);color:white;font-size:0.6rem;padding:2px 5px;border-radius:3px">${i+1}</span>
+    const bg = isImg ? `background:url('${p.url}') center/cover no-repeat #ccc` : 'background:#e8e8e8';
+    return `<div style="height:120px;border-radius:8px;overflow:hidden;${bg};position:relative;border:2px solid #ddd">
+      ${!isImg ? '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem">📐</div>' : ''}
+      <button onclick="removePlanimetria(${i})" style="position:absolute;top:3px;right:3px;background:rgba(220,50,50,0.9);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:11px;line-height:22px;text-align:center;padding:0;z-index:9">✕</button>
+      <span style="position:absolute;bottom:3px;left:3px;background:rgba(0,0,0,0.6);color:#fff;font-size:9px;padding:1px 4px;border-radius:3px">${i+1}</span>
     </div>`;
   }).join('') + '</div>';
 }
