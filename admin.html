@@ -1735,7 +1735,9 @@ function resetForm() {
   showSection('nuovo');
 }
 
-function editImmobile(imm) {
+function editImmobile(id) {
+  const imm = allImmobili.find(x => x.id == id);
+  if (!imm) { toast('Immobile non trovato', 'error'); return; }
   document.getElementById('editId').value = imm.id;
   document.getElementById('formTitle').textContent = 'Modifica: ' + imm.titolo;
 
